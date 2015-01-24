@@ -1,5 +1,5 @@
 # Frontend-Node
-Urqa frontend for You
+*`Urqa frontend for You`*
 =====================
 
 # URQA
@@ -22,13 +22,14 @@ Urqa frontend for You
    * Client (ios, android,  codova )  - MIT 
      
 ## UrQA User Guide
-    * https://docs.google.com/document/d/10ZR7Rken21j8c3WZTiPSBi5-pXlYSQHJfsc3h7QCHaE/edit?usp=sharing 
-     ## UrQA Protocol Documentation
-    * https://docs.google.com/document/d/1PKUL0H1H_IJxM4CHGelH7R16KGFnn9bJdcuYZFDrT7k/edit
-    * http://docs.urqa.apiary.io
+  * https://docs.google.com/document/d/10ZR7Rken21j8c3WZTiPSBi5-pXlYSQHJfsc3h7QCHaE/edit?usp=sharing 
+     
+## UrQA Protocol Documentation
+  * https://docs.google.com/document/d/1PKUL0H1H_IJxM4CHGelH7R16KGFnn9bJdcuYZFDrT7k/edit
+  * http://docs.urqa.apiary.io
 
 ## UrQA Issue 
     * Server Issue 
         * https://github.com/UrQA/URQA-Server/issues?state=open 
-        * Android Issue 
-            * https://github.com/UrQA/UrQA-Client-Android/issues
+    * Android Issue 
+        * https://github.com/UrQA/UrQA-Client-Android/issues
