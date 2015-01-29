@@ -31,3 +31,14 @@
         * https://github.com/UrQA/URQA-Server/issues?state=open 
     * Android Issue 
         * https://github.com/UrQA/UrQA-Client-Android/issues
+
+## Project Setting
+    * Bower Install & Library Dependency install  
+        * npm install bower -g
+        * bower install  
+     * Server Run
+        * node ./bin/www
+
+
+
+
