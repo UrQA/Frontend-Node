@@ -10,9 +10,14 @@
   * **User Group Google Grups**:
   https://groups.google.com/forum/#!forum/urqausergroup 
   * **User Group Facebook**: https://www.facebook.com/groups/1398899177025363/
+
+## Version
+  # 0.0.1 devlop 
    
 ## Requirements
   * **NodeJS** 
+  * **Bower** 
+  * **npm** 
    
 ## Branch Policy
   * git-flow   
@@ -24,12 +29,19 @@
 ## UrQA User Guide
   * https://docs.google.com/document/d/10ZR7Rken21j8c3WZTiPSBi5-pXlYSQHJfsc3h7QCHaE/edit?usp=sharing 
      
-## UrQA Protocol Documentation
-  * https://docs.google.com/document/d/1PKUL0H1H_IJxM4CHGelH7R16KGFnn9bJdcuYZFDrT7k/edit
-  * http://docs.urqa.apiary.io
-
 ## UrQA Issue 
     * Server Issue 
         * https://github.com/UrQA/URQA-Server/issues?state=open 
     * Android Issue 
         * https://github.com/UrQA/UrQA-Client-Android/issues
+
+## Project Setting
+    * Bower Install & Library Dependency install  
+        * npm install bower -g
+        * bower install  
+     * Server Run
+        * node ./bin/www
+
+
+
+
