@@ -1,27 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="description" content="">
-    <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="images/favicon.png">
-    <title>Login</title>
-    <!-- Core CSS-->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
-    <link href="bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet">
-    <!-- Just for debugging purposes. Don't actually copy this line!-->
-    <!--if lt IE 9script(src='js/ie8-responsive-file-warning.js')
-    -->
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries-->
-    <!--if lt IE 9
-    <scritp src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'>
-    <script src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js'>
-    -->
+    <% include ../layout/header %>
   </head>
   <body class="login-body">
     <div class="container">
@@ -36,7 +16,7 @@
             <input type="checkbox" value="remember-me"> Remember me<span class="pull-right"><a data-toggle="modal" href="#myModal"> Forgot Password?</a></span>
           </label>
           <button type="submit" class="btn btn-lg btn-login btn-block">Sign in</button>
-          <div class="registration">Don't have an account yet?<a href="registration.html">Create an account</a></div>
+          <div class="registration">Don't have an account yet?<a href="/users/join">Create an account</a></div>
         </div>
         <!-- Modal-->
         <div id="myModal" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade">
@@ -61,8 +41,7 @@
       </form>
     </div>
     <!-- Placed js at the end of the document so the pages load faster-->
-    <!-- Core js-->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <% include ../layout/script %>
   </body>
 </html>
