@@ -10,6 +10,8 @@ var sampleAjaxRoutes = require('./routes/sample/ajax');;
 var users = require('./routes/users');
 var projectsRoutes = require('./routes/projects');
 
+var dashboardRoutes = require('./routes/dashboard');
+
 var app = express();
 
 // view engine setup
@@ -27,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/projects', projectsRoutes);
-
+app.use('/dashboard', dashboardRoutes);
 app.use('/ajax', sampleAjaxRoutes);
 
 // catch 404 and forward to error handler
