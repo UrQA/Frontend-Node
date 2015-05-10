@@ -109,6 +109,16 @@ a,a:hover,a:focus {
     font-family:'Open Sans',sans-serif;
     margin:20px 0 5px;
 }
+
+.form-signin .btn-google {
+    background:url("/images/google/google.png") no-repeat;
+    color:#fff;
+    text-transform:uppercase;
+    width: 290px;
+    min-height:54px;
+    margin:auto;
+}
+
 .form-signin p {
     text-align:left;
     color:#b6b6b6;

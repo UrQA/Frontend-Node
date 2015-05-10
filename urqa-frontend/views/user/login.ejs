@@ -5,17 +5,20 @@
   </head>
   <body class="login-body">
     <div class="container">
-      <form action="projects.html" class="form-signin">
-        <h2 class="form-signin-heading">sign in now</h2>
+      <form action="/projects" class="form-signin">
+        <h2 class="form-signin-heading">URQA Management Tool</h2>
         <div class="login-wrap">
           <div class="user-login-info">
             <input type="text" placeholder="User ID" autofocus="" class="form-control">
             <input type="password" placeholder="Password" class="form-control">
           </div>
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me<span class="pull-right"><a data-toggle="modal" href="#myModal"> Forgot Password?</a></span>
-          </label>
           <button type="submit" class="btn btn-lg btn-login btn-block">Sign in</button>
+          <div class="btn btn-lg btn-google btn-block">
+            <span style="display: none">
+              sign in by Google
+            </span>
+          </div>
+
           <div class="registration">Don't have an account yet?<a href="/users/join">Create an account</a></div>
         </div>
         <!-- Modal-->
