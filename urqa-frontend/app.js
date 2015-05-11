@@ -1,3 +1,8 @@
+//https://gist.github.com/branneman/8048520
+global.rootRequire = function(name) {
+    return require(__dirname + '/' + name);
+}
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,12 +10,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index')
-var sampleAjaxRoutes = require('./routes/sample/ajax');;
-var users = require('./routes/users');
-var projectsRoutes = require('./routes/projects');
+var routes = rootRequire('routes/index')
+var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
+var users = rootRequire('routes/users');
+var projectsRoutes = rootRequire('routes/projects');
 
-var dashboardRoutes = require('./routes/dashboard');
+var dashboardRoutes = rootRequire('routes/dashboard');
 
 var app = express();
 
