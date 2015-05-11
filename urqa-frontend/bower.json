@@ -45,6 +45,7 @@
     "jquery.iframe-transport": "~1.0.0",
     "blueimp-file-upload": "~9.9.3",
     "bootstrap-switch": "2.0.0",
-    "select2": "3.4.5"
+    "select2": "3.4.5",
+    "Chart.js": "1.0.1"
   }
 }
