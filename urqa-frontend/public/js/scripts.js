@@ -6,7 +6,7 @@ function hyperlink(url)
 function copyClipboard(obj, value)
 {
     $(obj).zclip({
-        path: '/bower_components/jquery-zclip/ZeroClipboard.swf',
+        path: '_clipboard.swf',
         copy: function(){ return value; },
         beforeCopy: function () {},
         afterCopy: function () {
@@ -22,7 +22,7 @@ $(document).ready(function () {
         {
             var projectList = $("#projects div aside section.panel > ul li.copy");
             var zclipList = $("#projects div.zclip");
-            
+
             if (zclipList.length > 0)
             {
                 var obj = projectList.eq(0);
@@ -57,21 +57,21 @@ $(document).ready(function () {
                 classExpand: 'dcjq-current-parent'
             });
         }
-        /*==Slim Scroll ==*/
-        if ($.fn.slimScroll) {
-            $('.event-list').slimscroll({
-                height: '305px',
-                wheelStep: 20
-            });
-            $('.conversation-list').slimscroll({
-                height: '360px',
-                wheelStep: 35
-            });
-            $('.to-do-list').slimscroll({
-                height: '300px',
-                wheelStep: 35
-            });
-        }
+        // /*==Slim Scroll ==*/
+        // if ($.fn.slimScroll) {
+        //     $('.event-list').slimscroll({
+        //         height: '305px',
+        //         wheelStep: 20
+        //     });
+        //     $('.conversation-list').slimscroll({
+        //         height: '360px',
+        //         wheelStep: 35
+        //     });
+        //     $('.to-do-list').slimscroll({
+        //         height: '300px',
+        //         wheelStep: 35
+        //     });
+        // }
         /*==Nice Scroll ==*/
         if ($.fn.niceScroll) {
 
@@ -329,5 +329,11 @@ $(document).ready(function () {
 
     });
 
+    if ($("#timezone").length > 0)
+    {
+        $("#timezone").select2({
+            minimumResultsForSearch: -1
+        });
+    }
 
 })(jQuery);

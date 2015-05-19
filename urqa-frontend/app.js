@@ -70,7 +70,7 @@ app.use(function(err, req, res, next) {
 
 
 app.locals.resourceUrl = function(path) {
-    return "http://localhost:8081/" + path;
+    return "http://localhost:8081" + path;
 };
 
 
