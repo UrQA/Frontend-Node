@@ -15,6 +15,11 @@ router.get('/error/:idx?', function(req, res) {
   res.render('layout/dashboard/layout', {mainContainer : "../../dashboard/detail"});
 });
 
+router.get('/statistics', function(req, res) {
+  res.render('layout/dashboard/layout', {mainContainer : "../../dashboard/statistics"});
+});
+
+
 router.get('/setting', function(req, res) {
   var id = req.params.id;
   res.render('layout/dashboard/layout', {mainContainer : "../../dashboard/setting/general"});

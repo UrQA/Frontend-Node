@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="statistics.html">
+                    <a href="/dashboard/statistics">
                         <i class="fa fa-book"></i>
                         <span>Statistics</span>
                     </a>
@@ -40,9 +40,9 @@
                         <span>Settings</span>
                     </a>
                     <ul class="sub">
-                        <li class="active"><a href="setting-general.html">General</a></li>
-                        <li><a href="setting-viewer.html">Viewer</a></li>
-                        <li><a href="setting-symbolicate.html">Symbolicate</a></li>
+                        <li class="active"><a href="/dashboard/setting">General</a></li>
+                        <li><a href="/dashboard/setting/viewer">Viewer</a></li>
+                        <li><a href="/dashboard/setting/symbolicate">Symbolicate</a></li>
                     </ul>
                 </li>
             </ul>
@@ -66,13 +66,13 @@
 <!-- TODO:: grunt로 하나로 합치기 -->
 <% include ../script %>
 
-<script src="/bower_components/jquery-zclip/jquery.zclip.js"></script>
+<script src="<%= resourceUrl('/bower_components/jquery-zclip/jquery.zclip.js') %>"></script>
 
 
 
 
 <!--common script init for all pages-->
-<script src="/js/scripts.js"></script>
+<script src="<%= resourceUrl('/js/scripts.js') %>"></script>
 
 </body>
 </html>
