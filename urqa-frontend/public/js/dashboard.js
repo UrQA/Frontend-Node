@@ -7,7 +7,7 @@
             "bStateSave": true,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "./test.json",
+            "sAjaxSource": "/ajax/sample1",
             "sAjaxDataProp": "aaData",
             "bUseRendered": true,
             "bLengthChange": false,
@@ -54,10 +54,10 @@
         } );
 
         $('#btnTranding').click(function() {
-            _dataTable.api().ajax.url('./test.json').load();
+            _dataTable.api().ajax.url("/ajax/sample2").load();
         } );
         $('#btnLatest').click(function() {
-            _dataTable.api().ajax.url('./test2.json').load();
+            _dataTable.api().ajax.url("/ajax/sample1").load();
         } );
         //////////////////////////
 
@@ -237,24 +237,6 @@
                 height: '300px',
                 wheelStep: 35
             });
-        }
-
-
-        /*==Easy Pie chart ==*/
-        if ($.fn.easyPieChart) {
-
-            $('.epie-chart').easyPieChart({
-                onStep: function(from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                },
-                barColor: "#f8a20f",
-                lineWidth: 5,
-                size:80,
-                trackColor: "#efefef",
-                scaleColor:"#cccccc"
-
-            });
-
         }
 
     });

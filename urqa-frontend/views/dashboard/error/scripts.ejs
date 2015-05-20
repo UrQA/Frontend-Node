@@ -2,20 +2,22 @@
 <script src="<%= resourceUrl('/bower_components/jquery/dist/jquery.js') %>"></script>
 <script src="<%= resourceUrl('/js/jquery-ui/jquery-ui-1.10.1.custom.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/bootstrap/dist/js/bootstrap.min.js') %>"></script>
-
 <script src="<%= resourceUrl('/bower_components/jquery.scrollTo/jquery.scrollTo.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/slimScroll/jquery.slimscroll.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/jquery.nicescroll/jquery.nicescroll.min.js') %>"></script>
 
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<%= resourceUrl('bower_components/flot/excanvas.min.js') %>"></script><![endif]-->
+<!--flot char -->
+<script src="<%= resourceUrl('/bower_components/flot/jquery.flot.js') %>"></script>
+<script src="<%= resourceUrl('/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js') %>"></script>
+<script src="<%= resourceUrl('/bower_components/flot/jquery.flot.resize.js') %>"></script>
+<script src="<%= resourceUrl('/bower_components/flot/jquery.flot.pie.js') %>"></script>
+
+
+
 <!-- chart -->
-<script src="<%= resourceUrl('/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js') %>"></script>
-<script src="<%= resourceUrl('/bower_components/morris.js/morris.min.js') %>"></script>
-<script src="<%= resourceUrl('/bower_components/raphael/raphael-min.js') %>"></script>
-<script src="<%= resourceUrl('/bower_components/Chart.js/Chart.min.js') %>"></script>
-<script src="<%= resourceUrl('/bower_components/d3/d3.min.js') %>"></script>
-<script src="<%= resourceUrl('/bower_components/c3/c3.min.js') %>"></script>
-<script src="<%= resourceUrl('/js/jvector-map/jqvmap/jquery.vmap.js') %>"></script>
-<script src="<%= resourceUrl('/js/jvector-map/jqvmap/maps/jquery.vmap.world.js')%>"></script>
+
 
 <!--iCheck-->
 <script src="<%= resourceUrl('/bower_components/iCheck/icheck.min.js') %>"></script>
@@ -26,5 +28,5 @@
 <script src="<%= resourceUrl('/bower_components/datatables/media/js/jquery.dataTables.min.js') %>"></script>
 <script src="<%= resourceUrl('/js/DT_bootstrap.js') %>"></script>
 
-<script src="<%= resourceUrl('/js/statistics.js') %>"></script>
-<script src="<%= resourceUrl('/js/script.js') %>"></script>
+<script src="<%= resourceUrl('/js/dashboard.js') %>"></script>
+<script src="<%= resourceUrl('/js/scripts.js') %>"></script>
