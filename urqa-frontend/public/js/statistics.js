@@ -221,20 +221,7 @@ $(document).ready(function()
 	    "ye":"30.02",
 	    "zm":"15.69",
 	    "zw":"5.57"
-	}
-    $('#world-vmap').vectorMap({
-        map: 'world_en',
-        backgroundColor: null,
-        color: '#ffffff',
-        hoverOpacity: 0.7,
-        selectedColor: '#666666',
-        enableZoom: true,
-        borderWidth:1,
-        showTooltip: true,
-        values: world_data,
-        scaleColors: ['#C8EEFF', '#006491'],
-        normalizeFunction: 'polynomial'
-    });
+	};
 
 
     (function(){

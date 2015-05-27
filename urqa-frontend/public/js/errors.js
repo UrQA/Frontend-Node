@@ -70,7 +70,6 @@ $(document).ready(function()
                         $(nTd).children("select").val(sData.toLowerCase());
                         $(nTd).children("select").change(function(){
                             // Ajax to server
-                            alert("Update status(" + $(this).attr("data-index") + ", \"" + $(this).val() + "\")!");
                         });
                     }
                 }
@@ -98,18 +97,7 @@ $(document).ready(function()
     updateFilterData = function() {
         _dataTable.api().ajax.reload();
 
-        alert(' {\n\
-        "URL": "' + _dataTable.api().ajax.url() + '",\n\
-        "filterData": {\n\
-            "rank": "' + filterData["rank"] + '",\n\
-            "datestart": ' + filterData["datestart"] + ',\n\
-            "dateend": ' + filterData["dateend"] + ',\n\
-            "status": "' + filterData["status"] + '",\n\
-            "appversion": "' + filterData["appversion"] + '",\n\
-            "osversion": "' + filterData["osversion"] + '",\n\
-            "tag": "' + filterData["tag"] + '",\n\
-            "classes": "' + filterData["classes"] + '"\n\
-        }\n}');
+
     };
 
     $('#btnTranding').click(function() { _dataTable.api().ajax.url('./test3.json').load(); } );

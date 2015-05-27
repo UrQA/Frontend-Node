@@ -6,7 +6,7 @@ function hyperlink(url)
 function copyClipboard(obj, value)
 {
     $(obj).zclip({
-        path: '_clipboard.swf',
+        path: 'http://localhost:8081/bower_components/jquery-zclip/ZeroClipboard.swf',
         copy: function(){ return value; },
         beforeCopy: function () {},
         afterCopy: function () {
