@@ -27,3 +27,5 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 urqa-frontend/public/bower_components/
+.idea/
+Frontend-Node.iml

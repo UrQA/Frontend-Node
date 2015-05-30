@@ -1,3 +1,8 @@
+//https://gist.github.com/branneman/8048520
+global.rootRequire = function(name) {
+    return require(__dirname + '/' + name);
+}
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,8 +10,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = rootRequire('routes/index')
+var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
+var users = rootRequire('routes/users');
+var projectsRoutes = rootRequire('routes/projects');
+
+var dashboardRoutes = rootRequire('routes/dashboard');
 
 var app = express();
 
@@ -15,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,6 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/projects', projectsRoutes);
+app.use('/dashboard', dashboardRoutes);
+app.use('/ajax', sampleAjaxRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,6 +67,11 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+
+app.locals.resourceUrl = function(path) {
+    return "http://localhost:8081" + path;
+};
 
 
 module.exports = app;
