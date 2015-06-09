@@ -7,7 +7,7 @@
             "bStateSave": true,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "/ajax/sample1",
+            "sAjaxSource": urqaio.baseUrl + "/ajax/sample1",
             "sAjaxDataProp": "aaData",
             "bUseRendered": true,
             "bLengthChange": false,
@@ -54,10 +54,10 @@
         } );
 
         $('#btnTranding').click(function() {
-            _dataTable.api().ajax.url("/ajax/sample2").load();
+            _dataTable.api().ajax.url(urqaio.baseUrl + "/ajax/sample2").load();
         } );
         $('#btnLatest').click(function() {
-            _dataTable.api().ajax.url("/ajax/sample1").load();
+            _dataTable.api().ajax.url(urqaio.baseUrl + "/ajax/sample1").load();
         } );
         //////////////////////////
 
