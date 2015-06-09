@@ -1,12 +1,13 @@
-function hyperlink(url)
+function hyperlink(self)
 {
-    document.location = url;
+
+    document.location = $(self).data("url");
 }
 
 function copyClipboard(obj, value)
 {
     $(obj).zclip({
-        path: 'http://localhost:8081/bower_components/jquery-zclip/ZeroClipboard.swf',
+        path: urqaio.baseUrl + '/bower_components/jquery-zclip/ZeroClipboard.swf',
         copy: function(){ return value; },
         beforeCopy: function () {},
         afterCopy: function () {
