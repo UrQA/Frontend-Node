@@ -1,6 +1,7 @@
-function hyperlink(url)
+function hyperlink(self)
 {
-    document.location = url;
+
+    document.location = $(self).data("url");
 }
 
 function copyClipboard(obj, value)
