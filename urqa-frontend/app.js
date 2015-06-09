@@ -18,6 +18,19 @@ var projectsRoutes = rootRequire('routes/projects');
 var dashboardRoutes = rootRequire('routes/dashboard');
 
 var app = express();
+app.use(function(req, res, next) {
+    res.locals.baseUrl = req.protocol + '://' + req.get('host');
+    res.locals.resourceUrl = function(path) {
+        return res.locals.baseUrl + "/static" + path;
+    };
+
+    res.locals.getUrl = function(path) {
+        return res.locals.baseUrl + path;
+    }
+
+    //디폴트로 설정해야 하는 요소들은 여기에서 처리
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +42,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -43,6 +56,9 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+
+
 
 // error handlers
 
@@ -68,10 +84,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
-app.locals.resourceUrl = function(path) {
-    return "http://localhost:8081" + path;
-};
 
 
 module.exports = app;

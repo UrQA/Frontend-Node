@@ -17,19 +17,19 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="/dashboard/">
+                    <a class="active" href="<%= getUrl('/dashboard') %>">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/error">
+                    <a href="<%= getUrl('/dashboard/error') %>">
                         <i class="fa fa-laptop"></i>
                         <span>Errors</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/statistics">
+                    <a href="<%= getUrl('/dashboard/statistics') %>">
                         <i class="fa fa-book"></i>
                         <span>Statistics</span>
                     </a>
@@ -40,9 +40,9 @@
                         <span>Settings</span>
                     </a>
                     <ul class="sub">
-                        <li class="active"><a href="/dashboard/setting">General</a></li>
-                        <li><a href="/dashboard/setting/viewer">Viewer</a></li>
-                        <li><a href="/dashboard/setting/symbolicate">Symbolicate</a></li>
+                        <li class="active"><a href="<%= getUrl('/dashboard/setting') %>">General</a></li>
+                        <li><a href="<%= getUrl('/dashboard/setting/viewer')%>">Viewer</a></li>
+                        <li><a href="<%= getUrl('/dashboard/setting/symbolicate') %>">Symbolicate</a></li>
                     </ul>
                 </li>
             </ul>

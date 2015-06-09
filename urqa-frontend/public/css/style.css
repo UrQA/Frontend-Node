@@ -111,7 +111,7 @@ a,a:hover,a:focus {
 }
 
 .form-signin .btn-google {
-    background:url("/images/google/google.png") no-repeat;
+    background:url("../images/google/google.png") no-repeat;
     color:#fff;
     text-transform:uppercase;
     width: 290px;
