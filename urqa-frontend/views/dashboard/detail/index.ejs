@@ -7,8 +7,8 @@
             <div class="col-md-12">
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
-                    <li><a href="projects.html"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#">텔레톡비-v2</a></li>
+                    <li><a href="<%= getUrl('/projects') %>"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="<%= getUrl('/dashboard') %>">텔레톡비-v2</a></li>
                     <li><a href="errors.html">Errors</a></li>
                     <li class="active">Details</li>
                 </ul>
@@ -825,7 +825,7 @@
                                     <div class="comment-body col-sm-12">
                                         <div class="comment-block">
                                             <div class="profile">
-                                                <img src="images/avatar1_small.jpg" alt="" />
+                                                <img src="<%= resourceUrl('/images/avatar1_small.jpg') %>" alt="" />
                                             </div>
                                             <div class="">
                                             </div>
@@ -843,7 +843,7 @@
                                     <div class="comment-body col-sm-12">
                                         <div class="comment-block">
                                             <div class="profile">
-                                                <img src="images/avatar1_small.jpg" alt="" />
+                                                <img src="<%= resourceUrl('/images/avatar1_small.jpg') %>" alt="" />
                                             </div>
                                             <div class="content">
                                                 <div>

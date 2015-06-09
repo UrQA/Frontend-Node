@@ -5,7 +5,7 @@
   </head>
   <body class="login-body">
     <div class="container">
-      <form action="./projects" class="form-signin">
+      <form action="<%= getUrl('/projects') %>" class="form-signin">
         <h2 class="form-signin-heading">URQA Management Tool</h2>
         <div class="login-wrap">
           <div class="user-login-info">
@@ -19,7 +19,7 @@
             </span>
           </div>
 
-          <div class="registration">Don't have an account yet?<a href="./users/join">Create an account</a></div>
+          <div class="registration">Don't have an account yet?<a href="<%= getUrl('/users/join')%>">Create an account</a></div>
         </div>
         <!-- Modal-->
         <div id="myModal" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade">
