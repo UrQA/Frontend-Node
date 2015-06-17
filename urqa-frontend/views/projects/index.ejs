@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
+    <base href="/projects">
     <% include ../layout/header %>
-
 </head>
 
 <body>
@@ -10,38 +10,25 @@
 <section id="container" >
     <% include ../layout/dashboard/navibar %>
 <aside>
-    <div id="sidebar" class="nav-collapse">
-        <!-- sidebar menu start-->
-        <div class="leftside-navigation">
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="<%= getUrl('/projects') %>">
-                        <i class="fa fa-archive"></i>
-                        <span>Projects</span>
-                    </a>
-                </li>
-                <li>
-                    <a data-toggle="modal" href="#myModal" >
-                        <i class="fa fa-plus-circle"></i>
-                        <span>Add Project</span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-question-circle"></i>
-                        <span>Tutorial</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="#">Android Tutorial</a></li>
-                        <li><a href="#">iOS Tutorial</a></li>
-                        <li><a href="#">Unity Tutorial</a></li>
-                        <li><a href="#">Cordova Tutorial</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>        
-<!-- sidebar menu end-->
-    </div>  
+	<div id="sidebar" class="nav-collapse" ng-controller="NavSideCtrl">
+		<!-- sidebar menu start-->
+		<div class="leftside-navigation">
+			<ul class="sidebar-menu" id="nav-accordion" >
+				<li ng-repeat="link in menu" ng-class="link.menu !== undefined ? 'sub-menu': ''">
+				<a class="active" ui-sref="{{link.path}}">
+					<i class="fa" ng-class="link.icon"></i>
+					<span translate="{{link.name}}"></span>
+				</a>
+				<ul class="sub" ng-if="link.menu">
+					<li ng-repeat="sub in link.menu">
+					<a ui-sref="{{sub.path}}" translate="{{sub.name}}"></a>
+					</li>
+				</ul>
+				</li>
+			</ul>
+		</div>        
+		<!-- sidebar menu end-->
+	</div>
 </aside>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -124,97 +111,7 @@
             <!--breadcrumbs end -->
         </div>
     </div>
-
-    <div id="projects" class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <!--widget start-->
-            <aside class="profile-nav alt">
-                <section class="panel">
-                    <div class="user-heading alt gray-bg" onclick="hyperlink(this)" data-url="<%= getUrl('/dashboard') %>">
-                        <a> <img alt="" src="<%= resourceUrl('/images/lock_thumb.jpg') %>"> </a>
-                        <h1>
-                            <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="Fanpple">Fanpple</span>
-                        </h1>   
-                        <p>Release stage</p>
-                    </div>
-
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">62861D1B</span></a></li>
-                        <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-apple"></i> iOS</span></a></li>
-                        <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-primary pull-right r-activity">5</span></a></li>
-                    </ul>
-
-                </section>
-            </aside>
-            <!--widget end-->
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <!--widget start-->
-            <aside class="profile-nav alt">
-                <section class="panel">
-                    <div class="user-heading alt gray-bg" onclick="hyperlink(this)" data-url="<%= getUrl('/dashboard') %>">
-                        <a> <img alt="" src="<%= resourceUrl('/images/lock_thumb.jpg') %>"> </a>
-                        <h1>
-                            <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="ALYacPhone">ALYacPhone</span>
-                        </h1>
-                        <p>Release stage</p>
-                    </div>
-
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">64341412</span></a></li>
-                        <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-android"></i> Android</span></a></li>
-                        <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-warning pull-right r-activity">252</span></a></li>
-                    </ul>
-
-                </section>
-            </aside>
-            <!--widget end-->
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <!--widget start-->
-            <aside class="profile-nav alt">
-                <section class="panel">
-                    <div class="user-heading alt gray-bg" onclick="hyperlink(this)" data-url="<%= getUrl('/dashboard') %>">
-                        <a> <img alt="" src="<%= resourceUrl('/images/lock_thumb.jpg') %>"> </a>
-                        <h1>
-                            <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="BionTech">BionTech</span>
-                        </h1>
-                        <p>Develop stage</p>
-                    </div>
-
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">582C514F</span></a></li>
-                        <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-android"></i> Android</span></a></li>
-                        <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-success pull-right r-activity">74</span></a></li>
-                    </ul>
-
-                </section>
-            </aside>
-            <!--widget end-->
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <!--widget start-->
-            <aside class="profile-nav alt">
-                <section class="panel">
-                    <div class="user-heading alt gray-bg" onclick="hyperlink(this)" data-url="<%= getUrl('/dashboard') %>" >
-                        <a> <img alt="" src="<%= resourceUrl('/images/lock_thumb.jpg') %>"> </a>
-                        <h1>
-                            <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="텔레톡비-v2">텔레톡비-v2</span>
-                        </h1>
-                        <p>Test stage</p>
-                    </div>
-
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">46A26736</span></a></li>
-                        <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-android"></i> Android</span></a></li>
-                        <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-danger pull-right r-activity">2847</span></a></li>
-                    </ul>
-
-                </section>
-            </aside>
-            <!--widget end-->
-        </div>
-    </div>
+    <ui-view/>
     <!-- page end-->
     </section>
 </section>
