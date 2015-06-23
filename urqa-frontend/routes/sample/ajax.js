@@ -21,4 +21,9 @@ router.get('/sample4', function(req, res) {
   res.json(object);
 });
 
+router.get('/user-sample', function(req, res){
+  var object = require('./user-sample.json');
+  res.json(object);
+});
+
 module.exports = router;
