@@ -1,5 +1,5 @@
 <!--main content start-->
-<section id="main-content">
+<section id="main-content" ng-controller="DashBoardController" ng-init="initApiKey('<%= apikey %>')">
     <section id="dashboard" class="wrapper">
         <!-- page start -->
 
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-lg-8 col-sm-6">
                 <section class="panel">
-                    <div class="panel-body">
+                    <div class="panel-body" ng-controller="DashBoardDailyGraphController">
                         <div class="top-stats-panel">
                             <div class="daily-visit">
                                 <h4 class="widget-h">Daily Errors</h4>
