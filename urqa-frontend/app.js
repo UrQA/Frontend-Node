@@ -47,8 +47,15 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/projects', projectsRoutes);
-app.use('/dashboard', dashboardRoutes);
 app.use('/ajax', sampleAjaxRoutes);
+
+//apikey
+app.use('/:apikey', function(req, res, next){
+    res.locals.apikey = req.param("apikey");
+    next();
+});
+app.use('/:apikey', dashboardRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,13 +83,6 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
 
 
 

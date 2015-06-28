@@ -9,7 +9,9 @@ var getViewContainer = function(defaultPath) {
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.render('layout/dashboard/layout', getViewContainer("../../dashboard/dashboard"));
+    res.render('layout/dashboard/layout',
+        getViewContainer("../../dashboard/dashboard")
+    );
 });
 
 router.get('/error', function(req, res) {

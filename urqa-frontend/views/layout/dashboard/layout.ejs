@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
+    <base href="/<%= apikey %>">
     <% include ../header %>
 
 </head>
@@ -65,12 +66,6 @@
 
 <!-- TODO:: grunt로 하나로 합치기 -->
 <%- include(scriptContainer) %>
-
-
-
-
-
-
 
 </body>
 </html>
