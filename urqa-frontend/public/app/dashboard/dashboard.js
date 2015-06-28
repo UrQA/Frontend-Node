@@ -9,7 +9,7 @@ angular.module("app")
 
     .controller("DashBoardController", function($scope, ApiKeyService){
 
-        $scope.initApiKey = function(apiKey) {
+        $scope.initApiKey = function(apiKey, name) {
             ApiKeyService.setApiKey(apiKey);
         }
     })
@@ -37,12 +37,11 @@ angular.module("app")
             // Tooltip
             tooltip: true,
             tooltipOpts: {
-                content: "%s X: %x Y: %y",
+                content: "날짜: %x 에러 수: %y",
                 shifts: {
                     x: -60,
                     y: 25
                 },
-                defaultTheme: false
             },
 
             legend: {
@@ -57,11 +56,11 @@ angular.module("app")
 
             },
             xaxis: {
-                tickLength: 0,
-                tickDecimals: 0,
-                show: true,
-                min: 2,
+                mode: "time",
+                timeformat: "%m/%d",
+                minTickSize: [1, "day"],
 
+                show: true,
                 font: {
 
                     style: "normal",
@@ -93,7 +92,6 @@ angular.module("app")
 
         DashboardErrorDailyLoader().success(function(response){
             var data = ([{
-                label: "Too",
                 data: response.data,
                 lines: {
                     show: true,
