@@ -26,4 +26,15 @@ router.get('/user-sample', function(req, res){
   res.json(object);
 });
 
+
+router.get('/dashboard/pie', function(req, res){
+  var object = require('./dashboard/graph/error-pie.json');
+  res.json(object);
+});
+
+router.get('/dashboard/daily', function(req, res){
+  var object = require('./dashboard/graph/daily-error.json');
+  res.json(object);
+});
+
 module.exports = router;
