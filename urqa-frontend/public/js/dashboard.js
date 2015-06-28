@@ -166,59 +166,6 @@
             var plot = $.plot($("#daily-visit-chart"), data, options);
 
 
-
-            // DONUT
-            var dataPie = [{
-                label: "Unhandle",
-                data: 4.59
-            },
-            {
-                label: "Critical",
-                data: 40.81
-            },
-            {
-                label: "Major",
-                data: 13.21
-            },
-            {
-                label: "Minor",
-                data: 16.24
-            },
-            {
-                label: "Native",
-                data: 20.43
-            }];
-
-            $.plot($(".sm-pie"), dataPie, {
-                series: {
-                    pie: {
-                        innerRadius: 0.5,
-                        show: true,
-                        stroke: {
-                            width: 0.1,
-                            color: '#ffffff'
-                        }
-                    }
-
-                },
-                legend: {
-                    show: true,
-                    labelFormatter: function(text, series){ return text + " (" + series.percent.toFixed(2) + "%)"; },
-                    /*sorted: function(a, b){
-                        var a_var = parseFloat(a.label.split(" (")[1].split("%)")[0]);
-                        var b_var = parseFloat(b.label.split(" (")[1].split("%)")[0]);
-
-                        return a_var == b_var ? 0 : (a_var < b_var ? 1 : -1);
-                    }*/
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                },
-
-                colors: ["#E67A77", "#D9DD81", "#79D1CF", "#95D7BB", "#4D5360"]
-            });
-
         }
 
 
