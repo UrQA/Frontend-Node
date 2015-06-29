@@ -50,11 +50,11 @@ app.use('/projects', projectsRoutes);
 app.use('/ajax', sampleAjaxRoutes);
 
 //apikey
-app.use('/:apikey', function(req, res, next){
-    res.locals.apikey = req.param("apikey");
+app.use(/\/([0-9A-Za-z]{8})/, function(req, res, next){
+    res.locals.apikey = req.params[0];
     next();
 });
-app.use('/:apikey', dashboardRoutes);
+app.use(/\/([0-9A-Za-z]{6})/, dashboardRoutes);
 
 
 // catch 404 and forward to error handler
