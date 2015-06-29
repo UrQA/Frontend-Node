@@ -8,7 +8,7 @@
 
 <body>
 
-<section id="container" >
+<section id="container" ng-controller="DashBoardController" ng-init="initApiKey('<%= apikey %>')">
     <% include ./navibar %>
 
 <!--sidebar start-->

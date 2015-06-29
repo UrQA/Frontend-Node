@@ -54,7 +54,7 @@ app.use(/\/([0-9A-Za-z]{8})/, function(req, res, next){
     res.locals.apikey = req.params[0];
     next();
 });
-app.use(/\/([0-9A-Za-z]{6})/, dashboardRoutes);
+app.use(/\/([0-9A-Za-z]{8})/, dashboardRoutes);
 
 
 // catch 404 and forward to error handler
