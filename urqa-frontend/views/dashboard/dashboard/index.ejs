@@ -16,12 +16,12 @@
         </div>
 
         <!--mini statistics start-->
-        <div class="row">
+        <div class="row" ng-controller="DashBoardInfoController">
             <div class="col-md-3 col-sm-6">
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon orange"><i class="fa fa-bug"></i></span>
                     <div class="mini-stat-info">
-                        <span>4.91K</span>
+                        <span>{{info.weeklyBug}}</span>
                         Bug Received Week
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
                     <div class="mini-stat-info">
-                        <span>14.37K</span>
+                        <span>{{info.weeklyActiveUser}}</span>
                         Active Users Week
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon pink"><i class="fa fa-bar-chart-o"></i></span>
                     <div class="mini-stat-info">
-                        <span>0.05%</span>
+                        <span>{{info.avgBugRate}}%</span>
                         Avg Bug Rate
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon green"><i class="fa fa-gavel"></i></span>
                     <div class="mini-stat-info">
-                        <span>84.51%</span>
+                        <span>{{info.bugFixRate}}%</span>
                         Bug Fix Rate
                     </div>
                 </div>

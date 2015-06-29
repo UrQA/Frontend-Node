@@ -14,6 +14,20 @@ angular.module("app")
         }
     })
 
+    .controller("DashBoardInfoController", function($scope, DashBoardInfoLoader, ApiKeyService){
+        $scope.info = {};
+
+        $scope.info.weelyBug = 0;
+        $scope.info.weeklyActiveIser = 0;
+        $scope.info.avgBugRate = 0;
+        $scope.info.bugFixRate = 0;
+
+        DashBoardInfoLoader(ApiKeyService.getApiKey()).success(function(response) {
+            $scope.info = response;
+        });
+
+    })
+
     .controller("DashBoardDailyGraphController", function ($scope, $element, DashboardErrorDailyLoader) {
 
 

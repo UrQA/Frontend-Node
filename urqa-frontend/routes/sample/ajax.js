@@ -37,4 +37,11 @@ router.get('/dashboard/daily', function(req, res){
   res.json(object);
 });
 
+router.get('/dashboard/info', function(req, res){
+  var object = require('./dashboard/dashboard.json');
+  res.json(object);
+});
+
+
+
 module.exports = router;

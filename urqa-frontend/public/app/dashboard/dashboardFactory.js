@@ -8,4 +8,10 @@ angular.module("app")
         return function(apikey) {
             return $http.get('/ajax/dashboard/daily');
         };
+    }])
+    .factory('DashBoardInfoLoader', ['$http', function($http){
+        return function(apikey) {
+          return $http.get('/ajax/dashboard/info');
+        };
+
     }]);
