@@ -1,6 +1,6 @@
 angular.module("app")
-    .factory('UserInfoLoader', ['$http', function($http) {
+    .factory('UserInfoService', ['$resource', function($resource) {
         return function() {
-            return $http.get('/ajax/user-sample')
+            return $resource('/ajax/user-sample')
         };
     }]);

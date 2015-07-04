@@ -14,7 +14,7 @@ angular.module("app")
         }
     })
 
-    .controller("DashBoardInfoController", function($scope, DashBoardInfoLoader, ApiKeyService){
+    .controller("DashBoardInfoController", function($scope, DashBoardInfoService, ApiKeyService){
         $scope.info = {};
 
         $scope.info.weelyBug = 0;
@@ -22,13 +22,14 @@ angular.module("app")
         $scope.info.avgBugRate = 0;
         $scope.info.bugFixRate = 0;
 
-        DashBoardInfoLoader(ApiKeyService.getApiKey()).success(function(response) {
+        DashBoardInfoService().get()
+            .$promise.then(function(response) {
             $scope.info = response;
         });
 
     })
 
-    .controller("DashBoardDailyGraphController", function ($scope, $element, DashboardErrorDailyLoader) {
+    .controller("DashBoardDailyGraphController", function ($scope, $element, DashboardErrorDailyService) {
 
 
         $scope.elementJquery = $($element);
@@ -104,7 +105,8 @@ angular.module("app")
             colors: ["#87cfcb", "#48a9a7"]
         };
 
-        DashboardErrorDailyLoader().success(function(response){
+        DashboardErrorDailyService().get()
+            .$promise.then(function(response){
             var data = ([{
                 data: response.data,
                 lines: {
@@ -123,12 +125,13 @@ angular.module("app")
 
 
     })
-    .controller("DashboardErrorGraphController", function ($scope, $element,  DashboardErrorPieGraphLoader) {
+    .controller("DashboardErrorGraphController", function ($scope, $element,  DashboardErrorPieGraphService) {
 
         $scope.elementJquery = $($element);
 
         var pieNode = $scope.elementJquery.find(".sm-pie");
-        DashboardErrorPieGraphLoader().success(function(response) {
+        DashboardErrorPieGraphService().get()
+            .$promise.then(function(response) {
             $.plot(pieNode, response.data, {
                 series: {
                     pie: {

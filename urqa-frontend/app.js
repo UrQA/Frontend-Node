@@ -15,7 +15,7 @@ var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
 var users = rootRequire('routes/users');
 var projectsRoutes = rootRequire('routes/projects');
 
-var dashboardRoutes = rootRequire('routes/dashboard');
+var dashboardRoutes = rootRequire('routes/projectDetailRouter');
 
 var app = express();
 app.use(function(req, res, next) {
