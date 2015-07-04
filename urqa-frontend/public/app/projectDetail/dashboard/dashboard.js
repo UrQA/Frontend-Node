@@ -7,14 +7,12 @@ angular.module("app")
 
     })
 
-    .controller("DashBoardController", function($scope, ApiKeyService){
+    .controller("DashBoardController", function($scope, PROJECT_INFO){
 
-        $scope.initApiKey = function(apiKey, name) {
-            ApiKeyService.setApiKey(apiKey);
-        }
+        $scope.project = PROJECT_INFO;
     })
 
-    .controller("DashBoardInfoController", function($scope, DashBoardInfoService, ApiKeyService){
+    .controller("DashBoardInfoController", function($scope, DashBoardInfoService, PROJECT_INFO){
         $scope.info = {};
 
         $scope.info.weelyBug = 0;

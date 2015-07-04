@@ -3,19 +3,27 @@ global.rootRequire = function(name) {
     return require(__dirname + '/' + name);
 }
 
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var _ = require('underscore');
 
+var UserProjectCache = rootRequire('service/userProjectsService');
 var routes = rootRequire('routes/index')
 var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
 var users = rootRequire('routes/users');
 var projectsRoutes = rootRequire('routes/projects');
 
 var dashboardRoutes = rootRequire('routes/projectDetailRouter');
+
+
+var API_KEY_REGEX = /\/([0-9A-Za-z]{8})/;
+
+var userProjectCache = new UserProjectCache();
 
 var app = express();
 app.use(function(req, res, next) {
@@ -50,11 +58,22 @@ app.use('/projects', projectsRoutes);
 app.use('/ajax', sampleAjaxRoutes);
 
 //apikey
-app.use(/\/([0-9A-Za-z]{8})/, function(req, res, next){
+app.use(API_KEY_REGEX, function(req, res, next){
+
+    var project;
     res.locals.apikey = req.params[0];
-    next();
+    project = userProjectCache.getProjectInfo(1, req.params[0]);
+
+    if(_.isNull(project)) {
+        res.send(403, '사용 권한 없음'); //권한 없음 에러
+    } else {
+        res.locals.project = project;
+        next();
+    }
+
+
 });
-app.use(/\/([0-9A-Za-z]{8})/, dashboardRoutes);
+app.use(API_KEY_REGEX, dashboardRoutes);
 
 
 // catch 404 and forward to error handler
@@ -74,6 +93,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
+        console.log(err.message);
         res.render('error', {
             message: err.message,
             error: err
