@@ -8,13 +8,13 @@ var getViewContainer = function(defaultPath) {
 };
 
 /* GET users listing. */
-router.get('/', function(req, res) {
+router.get('/*', function(req, res) {
     res.render('layout/ProjectDetail/layout',
         getViewContainer("../../ProjectDetail/dashboard")
     );
 });
 
-router.get('/error', function(req, res) {
+/*router.get('/error', function(req, res) {
   res.render('layout/ProjectDetail/layout', getViewContainer("../../ProjectDetail/error"));
 });
 
@@ -42,8 +42,7 @@ router.get('/setting/viewer', function(req, res) {
   var id = req.params.id;
   res.render('layout/ProjectDetail/layout', getViewContainer("../../ProjectDetail/setting/viewer"));
 });
-
-
+*/
 
 
 

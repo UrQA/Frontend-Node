@@ -6,62 +6,75 @@ var apiKey = window.PROJECT_INFO.key;
 
 app.constant("DETAIL_NAV_SIDE", [{
     name: "DETAIL_NAV_SIDE.DASHBOARD",
-    path: apiKey,
+    path: "detail.dashboard",
     icon: "fa-dashboard"
 }, {
     name: "DETAIL_NAV_SIDE.ERRORS",
-    path: apiKey+".errors",
+    path: "detail.errors",
     icon: "fa-laptop"
 }, {
     name: "DETAIL_NAV_SIDE.STATISTICS",
-    path: apiKey+".statistics",
+    path: "detail.statistics",
     icon: "fa-book"
 },
     {
     name: "DETAIL_NAV_SIDE.SETTINGS.TITLE",
-    path: apiKey+"settings",
     icon: "fa-bullhorn",
     menu: [{
         name: "DETAIL_NAV_SIDE.SETTINGS.GENERAL",
-        path: "tutorial.General",
+        path: "detail.general",
         parent: "DETAIL_NAV_SIDE.SETTINGS"
     },{
         name: "DETAIL_NAV_SIDE.SETTINGS.VIEWER",
-        path: "tutorial.ios",
+        path: "detail.viewer",
         parent: "DETAIL_NAV_SIDE.SETTINGS"
     }, {
         name: "DETAIL_NAV_SIDE.SETTINGS.SYMBOLICATE",
-        path: "tutorial.symbolicate",
+        path: "detail.symbolicate",
         parent: "DETAIL_NAV_SIDE.SETTINGS"
     }]
 }])
     .constant("PROJECT_INFO", window.PROJECT_INFO )
+
+    .config(function ($stateProvider) {
+        $stateProvider.state("detail", {
+            url: "/",
+            template: "<ui-view />",
+            abstract: true
+            })
+            .state("detail.dashboard", {
+                url: apiKey,
+                templateUrl: "/static/app/projectDetail/dashboard/template.html"
+            })
+            .state("detail.errors",{
+                url: apiKey + "/errors",
+                templateUrl: "/static/app/projectDetail/errors/template.html"
+            })
+            .state("detail.statistics", {
+                url: apiKey + "/statistics",
+                templateUrl: "/static/app/projectDetail/statistics/template.html"
+            })
+            .state("detail.general", {
+                url: apiKey + "/setting",
+                templateUrl: "/static/app/projectDetail/setting/general/template.html"
+            })
+            .state("detail.viewer", {
+                url: apiKey + "/setting/viewer",
+                templateUrl: "/static/app/projectDetail/setting/viewer/template.html"
+            })
+            .state("detail.symbolicate", {
+                url: apiKey + "/setting/symbolicate",
+                templateUrl: "/static/app/projectDetail/setting/symbolicate/template.html"
+            });
+    })
     .controller("DetailNavSideCtrl", function ($scope, $state, DETAIL_NAV_SIDE) {
         $scope.menu = DETAIL_NAV_SIDE;
-        $scope.activeMenu = "DETAIL_NAV_SIDE.DASHBOARD";
+        $scope.activeMenu = $state.current.name;
+        $scope.$on('$stateChangeSuccess', function(event, toState){
+            $scope.activeMenu = toState.name;
+        });
 
         $scope.clickMenu = function(target) {
             $scope.activeMenu = target;
         }
-    })
-    .config(function ($stateProvider) {
-        $stateProvider.state(apiKey, {
-            url: "/",
-            template: "<ui-view />",
-            abstract: true,
-            data: { title: [] }
-        })
-            .state(apiKey+".errors",{
-                url: apiKey+"/errors",
-                templateUrl: "/static/app/projects/projects.list.html",
-                controller: "ProjectCtrl",
-                resolve: {data: function ($stateParams) {
-                    return {};
-                } }
-            })
-            .state(apiKey+".statistics", {
-                url: apiKey + "/statistics",
-                templateUrl: "/static/app/projects/projects.edit.html",
-                controller: "ProjectEditCtrl"
-            });
     });
