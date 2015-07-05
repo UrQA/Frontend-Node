@@ -11,5 +11,16 @@ angular.module("app")
         	UNITY: "Unity",
         	CORDOVA: "Cordova"
         }
-    } 
+    } ,
+    DETAIL_NAV_SIDE : {
+        DASHBOARD: "Dashboard",
+        ERRORS: "Errors",
+        STATISTICS: "Statistics",
+        SETTINGS: {
+            TITLE: "Settings",
+            GENERAL: "General",
+            VIEWER: "Viewer",
+            SYMBOLICATE: "Symbolicate"
+        }
+    }
 });
