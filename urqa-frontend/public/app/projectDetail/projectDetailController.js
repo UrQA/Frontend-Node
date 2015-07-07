@@ -2,7 +2,7 @@
  * Created by karuana on 15. 7. 4..
  */
 var app = angular.module("app");
-var apiKey = window.PROJECT_INFO.key;
+
 
 app.constant("DETAIL_NAV_SIDE", [{
     name: "DETAIL_NAV_SIDE.DASHBOARD",
@@ -34,9 +34,9 @@ app.constant("DETAIL_NAV_SIDE", [{
         parent: "DETAIL_NAV_SIDE.SETTINGS"
     }]
 }])
-    .constant("PROJECT_INFO", window.PROJECT_INFO )
 
-    .config(function ($stateProvider) {
+    .config(function ($stateProvider, PROJECT_INFO) {
+        var apiKey = PROJECT_INFO.key;
         $stateProvider.state("detail", {
             url: "/",
             template: "<ui-view />",
@@ -67,14 +67,18 @@ app.constant("DETAIL_NAV_SIDE", [{
                 templateUrl: "/static/app/projectDetail/setting/symbolicate/template.html"
             });
     })
-    .controller("DetailNavSideCtrl", function ($scope, $state, DETAIL_NAV_SIDE) {
+    .controller("DetailNavSideCtrl", function ($scope, DETAIL_NAV_SIDE) {
         $scope.menu = DETAIL_NAV_SIDE;
-        $scope.activeMenu = $state.current.name;
+        $scope.activeMenu = "detail.dashboard";
         $scope.$on('$stateChangeSuccess', function(event, toState){
             $scope.activeMenu = toState.name;
         });
 
         $scope.clickMenu = function(target) {
             $scope.activeMenu = target;
+        }
+
+        $scope.hasPathParm = function(param) {
+            return (param !== undefined) && (param !== null);
         }
     });
