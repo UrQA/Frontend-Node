@@ -8,7 +8,7 @@
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
                     <li><a href="projects.html"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#">텔레톡비-v2</a></li>
+                    <li><a href="<%= getUrl('/'+project.key) %>">{{project.name}}</a></li>
                     <li class="active">Dashboard</li>
                 </ul>
                 <!--breadcrumbs end -->
@@ -16,12 +16,12 @@
         </div>
 
         <!--mini statistics start-->
-        <div class="row">
+        <div class="row" ng-controller="DashBoardInfoController">
             <div class="col-md-3 col-sm-6">
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon orange"><i class="fa fa-bug"></i></span>
                     <div class="mini-stat-info">
-                        <span>4.91K</span>
+                        <span>{{info.weeklyBug}}</span>
                         Bug Received Week
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
                     <div class="mini-stat-info">
-                        <span>14.37K</span>
+                        <span>{{info.weeklyActiveUser}}</span>
                         Active Users Week
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon pink"><i class="fa fa-bar-chart-o"></i></span>
                     <div class="mini-stat-info">
-                        <span>0.05%</span>
+                        <span>{{info.avgBugRate}}%</span>
                         Avg Bug Rate
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon green"><i class="fa fa-gavel"></i></span>
                     <div class="mini-stat-info">
-                        <span>84.51%</span>
+                        <span>{{info.bugFixRate}}%</span>
                         Bug Fix Rate
                     </div>
                 </div>
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-lg-8 col-sm-6">
                 <section class="panel">
-                    <div class="panel-body">
+                    <div class="panel-body" ng-controller="DashBoardDailyGraphController">
                         <div class="top-stats-panel">
                             <div class="daily-visit">
                                 <h4 class="widget-h">Daily Errors</h4>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <section class="panel">
-                    <div class="panel-body">
+                    <div class="panel-body" ng-controller="DashboardErrorGraphController">
                         <div class="top-stats-panel">
                             <h4 class="widget-h">Rank Rating</h4>
                             <div class="sm-pie" style="height:150px">
@@ -114,22 +114,22 @@
                         <div id="errors-table" class="adv-table">
                             <table class="table table-hover table-striped" id="dynamic-table">
                                 <thead>
-                                    <tr>
-                                        <th style="width:50px">Rank</th>
-                                        <th style="width:60px">Count</th>
-                                        <th>Name</th>
-                                        <th style="width:180px">Tags</th>
-                                        <th style="width:60px" class="res-hidden">Date</th>
-                                    </tr>
+                                <tr>
+                                    <th style="width:50px">Rank</th>
+                                    <th style="width:60px">Count</th>
+                                    <th>Name</th>
+                                    <th style="width:180px">Tags</th>
+                                    <th style="width:60px" class="res-hidden">Date</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-title="Rank" class="text-center"></td>
-                                        <td data-title="Count" class="text-center text-danger text-bold"></td>
-                                        <td data-title="Name" class="table-text-ellipsis"></td>
-                                        <td data-title="Tags" class="tags"></td>
-                                        <td data-title="Date" class="res-hidden"></td>
-                                    </tr>
+                                <tr>
+                                    <td data-title="Rank" class="text-center"></td>
+                                    <td data-title="Count" class="text-center text-danger text-bold"></td>
+                                    <td data-title="Name" class="table-text-ellipsis"></td>
+                                    <td data-title="Tags" class="tags"></td>
+                                    <td data-title="Date" class="res-hidden"></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
