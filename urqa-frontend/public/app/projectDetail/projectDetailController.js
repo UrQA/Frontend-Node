@@ -81,4 +81,8 @@ app.constant("DETAIL_NAV_SIDE", [{
         $scope.hasPathParm = function(param) {
             return (param !== undefined) && (param !== null);
         }
+    })
+    .controller("DetailViewController", function($scope, PROJECT_INFO){
+
+        $scope.project = PROJECT_INFO;
     });
