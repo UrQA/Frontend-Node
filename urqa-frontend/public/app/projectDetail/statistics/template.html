@@ -5,15 +5,15 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="breadcrumb">
-                    <li><a href="<%= getUrl('/projects')%>"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#">텔레톡비-v2</a></li>
+                    <li><a href="http://localhost:3000/projects"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="/{{project.key}}">{{project.name}}</a></li>
                     <li class="active">Statistics</li>
                 </ul>
             </div>
         </div>
 
         <div id="statistics-chart-area" class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" ng-controller="ProjectDauController">
                 <section class="panel">
                     <header class="panel-heading">
                         Daily Active Users
@@ -26,7 +26,7 @@
                     </div>
                 </section>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" ng-controller="ProjectCrashRateController">
                 <section class="panel">
                     <header class="panel-heading">
                         Crash Rates
@@ -207,11 +207,11 @@
 
                 </section>
             </div>
-            <div class="col-md-12" style="margin-top: -20px;">
+            <div class="col-md-12" style="margin-top: -20px;" ng-controller="ProjectWorldController">
                 <section class="panel">
                     <div class="panel-body">
                         <div class="chartJS" style="width:100%; height: 350px">
-                            <canvas id="world_vmap_info"></canvas>
+                            <div id="world_vmap_info"></div>
                         </div>
                     </div>
                 </section>
@@ -219,7 +219,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" ng-controller="classErrorRateController">
                 <section class="panel">
                     <header class="panel-heading">
                         Class Error Rate
@@ -392,7 +392,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" ng-controller="ProjectVersionController">
                 <section class="panel">
                     <header class="panel-heading">
                         Version Error Rate
@@ -410,7 +410,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" ng-controller="DeviceErrorRateController">
                 <section class="panel">
                     <header class="panel-heading">
                         Device Error Rate
@@ -420,7 +420,8 @@
                     </header>
                     <div class="panel-body">
                         <div class="chartJS" style="width:100%; height: 350px">
-                            <canvas id="device-errorrate"></canvas>
+                            <div id="device-graph"></div>
+                            <div id="device-errorrate"></div>
                         </div>
                     </div>
                 </section>
