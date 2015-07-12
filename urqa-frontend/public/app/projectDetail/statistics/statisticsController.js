@@ -190,7 +190,7 @@ angular.module("app")
             } else {
                 return 'progress-bar-info';
             }
-        }
+        };
 
         Morris.Donut({
             element: 'graph-donut',
@@ -202,4 +202,51 @@ angular.module("app")
             ],
             formatter: function (x, data) { return data.value + "%"; }
         });
+    })
+    .controller("errorActivityController", function($scope){
+        $scope.data =  [
+            {value: 210, label: 'unknown'},
+            {value: 5, label: 'droom.sleepIfUCan.activity.PhotoAlarmDismissActivity'},
+            {value: 11, label: 'android.app.Activity' },
+            {value: 3, label: 'droom.sleepIfUCan.activity.AlarmAlertFullScreenActivity'},
+            {value: 8, label: 'droom.sleepIfUCan.activity.SetAlarmActivity'},
+            {value: 5, label: 'droom.sleepIfUCan.activity.MainActivity' },
+            {value: 4, label: 'droom.sleepIfUCan.activity.MenuActivity' },
+            {value: 4, label: 'droom.sleepIfUCan.activity.SelectPictureActivity' },
+        ];
+        $scope.total = 61;
+
+        $scope.getItemClass = function(data) {
+
+            if(data.value > 15) {
+                return 'progress-bar-danger';
+            } else if(data.value > 10){
+                return 'progress-bar-warning';
+            } else {
+                return 'progress-bar-info';
+            }
+        };
+    })
+    .controller("OsVersionController", function($scope){
+        $scope.data = [
+            {value: 20, label: '4.4.2'},
+            {value: 5, label: '4.1.2'},
+            {value: 11, label: '4.3' },
+            {value: 3, label: '4.2.2'},
+            {value: 8, label: '4.0.4'},
+            {value: 5, label: '2.2' },
+            {value: 4, label: '5.1' },
+            {value: 4, label: 'Others' },
+        ]
+
+        $scope.getItemClass = function(data) {
+
+            if(data.value > 15) {
+                return 'progress-bar-danger';
+            } else if(data.value > 10){
+                return 'progress-bar-warning';
+            } else {
+                return 'progress-bar-info';
+            }
+        };
     });
