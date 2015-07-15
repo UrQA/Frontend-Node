@@ -59,7 +59,7 @@
                                 <div class="content-body">
 
                                     <div class="content-row" ng-repeat="item in data">
-                                        <p class="text-ellipsis">{{item.label}}</p>
+                                        <p class="text-ellipsis">{{item.name}}</p>
                                         <div>
                                             <div class="progress progress-xs">
                                                 <div ng-class="getItemClass(item)" ng-style="{'width':item.value+'%'}" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar">
@@ -88,12 +88,12 @@
                     <div class="panel-body">
                         <div class="progress-table large-table col-sm-12">
                             <div class="title-body">
-                                <div class="col-xs-9 text-small">Version</div>
+                                <div class="col-xs-9 text-small">Activity</div>
                                 <div class="col-xs-3 text-small">Percentage</div>
                             </div>
                             <div class="content-body">
                                 <div class="content-row" ng-repeat="item in data">
-                                    <p class="text-ellipsis">{{item.label}}</p>
+                                    <p class="text-ellipsis">{{item.name}}</p>
                                     <div>
                                         <div class="progress progress-xs">
                                             <div ng-class="getItemClass(item)" ng-style="{'width':item.value+'%'}"  aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar">
