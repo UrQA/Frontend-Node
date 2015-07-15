@@ -1,17 +1,6 @@
 angular.module("app")
-    .factory('DashboardErrorPieGraphService', ['$resource', function($resource) {
+    .factory('StatDauService', ['$resource', function($resource) {
         return function(apikey) {
-            return $resource('/ajax/dashboard/pie');
+            return $resource('/ajax/stat/dau');
         };
     }])
-    .factory('DashboardErrorDailyService', ['$resource', function($resource) {
-        return function(apikey) {
-            return $resource('/ajax/dashboard/daily');
-        };
-    }])
-    .factory('DashBoardInfoService', ['$resource', function($resource){
-        return function(apikey) {
-            return $resource('/ajax/dashboard/info');
-        };
-
-    }]);

@@ -1,74 +1,35 @@
 angular.module("app")
-    .controller("ProjectDauController", function($scope, PROJECT_INFO){
-        var b = [{
-            "date": "11/11",
-            total: 530,
-            "1.3": 30,
-            "1.2": 200,
-            "1.11": 300
+    .controller("ProjectDauController", function($scope, StatDauService){
+        StatDauService().get()
+            .$promise.then(function(response){
+                var keys = response['app-version'];
 
-        },{
-            "date": "11/12",
-            total: 350,
-            "1.3": 20,
-            "1.2": 130,
-            "1.11": 200
-        },{
-            "date": "11/13",
-            total: 300,
-            "1.3": 50,
-            "1.2": 90,
-            "1.11": 160
-        },{
-            "date": "11/14",
-            total: 680,
-            "1.3": 40,
-            "1.2": 240,
-            "1.11": 490
-        },{
-            "date": "11/15",
-            total: 440,
-            "1.3": 60,
-            "1.2": 130,
-            "1.11": 250
-        },{
-            "date": "11/16",
-            total: 440,
-            "1.3": 50,
-            "1.2": 220,
-            "1.11": 250
-        },{
-            "date": "11/17",
-            total:520,
-            "1.3": 30,
-            "1.2": 20,
-            "1.11": 30
-        }]
-        var chart = c3.generate({
-            bindto: "#dau-bar",
-            data: {
-                json: b,
-                keys: {
-                    x: "date",
-                    value:['1.3','1.2', '1.11', 'total']
-                },
-                type: 'bar',
-                types: {
-                    total: 'area',
-                },
-                groups: [
-                    ['1.3','1.2', '1.11']
-                ],
-            },
-            axis: {
-                x: {
-                    type: 'category'
-                }
-            },
-            color: {
-                pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
-            }
-        });
+                c3.generate({
+                    bindto: "#dau-bar",
+                    data: {
+                        json: response.data,
+                        keys: {
+                            x: "date",
+                            value: keys.concat(['total'])
+                        },
+                        type: 'bar',
+                        types: {
+                            total: 'area',
+                        },
+                        groups: [
+                            keys
+                        ],
+                    },
+                    axis: {
+                        x: {
+                            type: 'category'
+                        }
+                    },
+                    color: {
+                        pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+                    }
+                });
+            });
 
     })
     .controller("ProjectCrashRateController", function($scope){

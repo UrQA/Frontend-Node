@@ -43,5 +43,11 @@ router.get('/dashboard/info', function(req, res){
 });
 
 
+router.get('/stat/dau', function(req, res){
+  var object = require('./stat/dailyActiveUser.json');
+  res.json(object);
+})
+
+
 
 module.exports = router;
