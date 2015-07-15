@@ -1,42 +1,149 @@
 angular.module("app")
     .controller("ProjectDauController", function($scope, PROJECT_INFO){
-        Morris.Bar({
-            element: 'dau-bar',
-            data: [
-                {x: '2011 Q1', y: 3, z: 2, a: 3},
-                {x: '2011 Q2', y: 2, z: null, a: 1},
-                {x: '2011 Q3', y: 0, z: 2, a: 4},
-                {x: '2011 Q4', y: 2, z: 4, a: 3}
-            ],
-            xkey: 'x',
-            ykeys: ['y', 'z', 'a'],
-            labels: ['Y', 'Z', 'A'],
-            barColors:['#E67A77','#D9DD81','#79D1CF']
+        var b = [{
+            "date": "11/11",
+            total: 530,
+            "1.3": 30,
+            "1.2": 200,
+            "1.11": 300
+
+        },{
+            "date": "11/12",
+            total: 350,
+            "1.3": 20,
+            "1.2": 130,
+            "1.11": 200
+        },{
+            "date": "11/13",
+            total: 300,
+            "1.3": 50,
+            "1.2": 90,
+            "1.11": 160
+        },{
+            "date": "11/14",
+            total: 680,
+            "1.3": 40,
+            "1.2": 240,
+            "1.11": 490
+        },{
+            "date": "11/15",
+            total: 440,
+            "1.3": 60,
+            "1.2": 130,
+            "1.11": 250
+        },{
+            "date": "11/16",
+            total: 440,
+            "1.3": 50,
+            "1.2": 220,
+            "1.11": 250
+        },{
+            "date": "11/17",
+            total:520,
+            "1.3": 30,
+            "1.2": 20,
+            "1.11": 30
+        }]
+        var chart = c3.generate({
+            bindto: "#dau-bar",
+            data: {
+                json: b,
+                keys: {
+                    x: "date",
+                    value:['1.3','1.2', '1.11', 'total']
+                },
+                type: 'bar',
+                types: {
+                    total: 'area',
+                },
+                groups: [
+                    ['1.3','1.2', '1.11']
+                ],
+            },
+            axis: {
+                x: {
+                    type: 'category'
+                }
+            },
+            color: {
+                pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+            }
         });
 
     })
     .controller("ProjectCrashRateController", function($scope){
-        var day_data = [
-            {"date": "I", "value": 34},
-            {"date": "II", "value": 24},
-            {"date": "III", "value": 3},
-            {"date": "IV", "value": 12},
-            {"date": "V", "value": 13},
-            {"date": "VI", "value": 22},
-            {"date": "VII", "value": 5},
-            {"date": "VIII", "value": 26},
-            {"date": "IX", "value": 12},
-            {"date": "X", "value": 19}
-        ];
-        Morris.Line({
-            element: 'crash-rate',
-            data: day_data,
-            xkey: 'date',
-            ykeys: ['value'],
-            labels: ['value'],
-            lineColors:['#1FB5AD'],
-            parseTime: false
+
+
+        var b = [{
+            "date": "11/11",
+            total: 530,
+            "1.3": 30,
+            "1.2": 200,
+            "1.11": 300
+
+        },{
+            "date": "11/12",
+            total: 350,
+            "1.3": 20,
+            "1.2": 130,
+            "1.11": 200
+        },{
+            "date": "11/13",
+            total: 300,
+            "1.3": 50,
+            "1.2": 90,
+            "1.11": 160
+        },{
+            "date": "11/14",
+            total: 680,
+            "1.3": 40,
+            "1.2": 240,
+            "1.11": 490
+        },{
+            "date": "11/15",
+            total: 440,
+            "1.3": 60,
+            "1.2": 130,
+            "1.11": 250
+        },{
+            "date": "11/16",
+            total: 440,
+            "1.3": 50,
+            "1.2": 220,
+            "1.11": 250
+        },{
+            "date": "11/17",
+            total:520,
+            "1.3": 30,
+            "1.2": 20,
+            "1.11": 30
+        }]
+        var chart = c3.generate({
+            bindto:'#crash-rate',
+            data: {
+                json: b,
+                keys: {
+                    x:'date',
+                    value:['1.3','1.2', '1.11']
+                },
+                types: {
+                    '1.3': 'area',
+                    '1.2': 'area',
+                    '1.11': 'area'
+                    // 'line', 'spline', 'step', 'area', 'area-step' are also available to stack
+                },
+                groups: [['1.3', '1.2','1.11']]
+            },
+            axis: {
+                x: {
+                    type: 'category'
+                }
+            },
+            color: {
+                pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+            }
         });
+
     })
     .controller("ProjectWorldController", function($scope){
 
