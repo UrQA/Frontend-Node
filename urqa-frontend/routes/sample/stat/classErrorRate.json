@@ -11,6 +11,6 @@
     {"value": 4, "label": "android.database.sqlite.SQLiteStatement" },
     {"value": 2, "label": "android.database.sqlite.SQLiteConnection" },
     {"value": 1.6, "label": "droom.sleepIfUCan.activity.SelectPictureActivity" },
-    {"value": 18.8, "label": "Others" },
+    {"value": 18.8, "label": "Others" }
   ]
 }

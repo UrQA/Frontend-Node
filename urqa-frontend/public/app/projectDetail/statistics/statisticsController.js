@@ -196,20 +196,10 @@ angular.module("app")
         StatClassService().get()
             .$promise.then(function(response) {
                 $scope.data = response.data;
-
             });
 
 
-        Morris.Donut({
-            element: 'graph-donut',
-            data:$scope.data,
-            backgroundColor: '#fff',
-            labelColor: '#1fb5ac',
-            colors: [
-                '#E67A77','#D9DD81','#79D1CF','#95D7BB'
-            ],
-            formatter: function (x, data) { return data.value + "%"; }
-        });
+
     })
     .controller("errorActivityController", function($scope, StatActivityService) {
 
