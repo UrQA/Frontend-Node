@@ -19,3 +19,13 @@ angular.module("app")
             return $resource('/ajax/stat/activity');
         };
     }])
+    .factory('StatDeviceService', ['$resource', function($resource) {
+        return function(apikey) {
+            return $resource('/ajax/stat/device');
+        };
+    }])
+    .factory('StatWorldeService', ['$resource', function($resource) {
+        return function(apikey) {
+            return $resource('/ajax/stat/world');
+        };
+    }])

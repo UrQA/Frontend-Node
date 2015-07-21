@@ -46,18 +46,26 @@ router.get('/dashboard/info', function(req, res){
 router.get('/stat/dau', function(req, res){
   var object = require('./stat/dailyActiveUser.json');
   res.json(object);
-})
+});
 router.get('/stat/crash', function(req, res) {
   var object = require('./stat/crashRate.json');
   res.json(object);
-})
+});
 router.get('/stat/os', function(req, res) {
   var object = require('./stat/osVersionList.json');
   res.json(object);
-})
+});
 router.get('/stat/activity', function(req, res) {
   var object = require('./stat/errorActivityList.json');
   res.json(object);
-})
+});
+router.get('/stat/device', function(req, res) {
+  var object = require('./stat/deviceErrorRate.json');
+  res.json(object);
+});
+router.get('/stat/world', function(req, res) {
+  var object = require('./stat/worldMap.json');
+  res.json(object);
+});
 
 module.exports = router;

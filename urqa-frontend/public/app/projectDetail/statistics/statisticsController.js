@@ -68,129 +68,126 @@ angular.module("app")
 
 
     })
-    .controller("ProjectWorldController", function($scope){
+    .controller("ProjectWorldController", function($scope, StatWorldeService){
 
-        var world_data = [
-            {"location": "kr", "value": 975.26},
-            {"location": "kw", "value": 975.26},
-            {"location": "kg", "value": 975.26},
-            {"location": "la", "value": 975.26},
-            {"location": "lv", "value": 975.26},
-            {"location": "lb", "value": 975.26},
-            {"location": "ls", "value": 975.26},
-            {"location": "lt", "value": 975.26}
-        ];
+        StatWorldeService().get()
+            .$promise.then(function(response) {
+                c3.generate({
+                    bindto: "#world_vmap_info",
+                    data: {
+                        json: response.data,
 
-        var chart = c3.generate({
-            bindto: "#world_vmap_info",
-            data: {
-                json: world_data,
+                        keys: {
+                            x: "location",
+                            value:["value"]
+                        },
+                        labels: true,
+                        type: 'bar'
+                    },
+                    axis: {
+                        x: {
+                            type: 'category'
+                        }
+                    },
 
-                keys: {
-                    x: "location",
-                    value:["value"]
-                },
-                labels: true,
-                type: 'bar'
-            },
-            axis: {
-                x: {
-                    type: 'category'
-                }
-            },
-
-            color: {
-                pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
-            },
-            legend: {
-                show: false
-            },
-            bar: {
-                width: {
-                    ratio: 0.5 // this makes bar width 50% of length between ticks
-                }
-            }
-        });
+                    color: {
+                        pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+                    },
+                    legend: {
+                        show: false
+                    },
+                    bar: {
+                        width: {
+                            ratio: 0.5 // this makes bar width 50% of length between ticks
+                        }
+                    }
+                });
+            });
     })
     .controller("ProjectVersionController", function($scope, $element){
+
+        var json = [{
+            'appVersion': 'android 0.1',
+            '5.3': 20,
+            '4.0': 10,
+            '2.2': 200
+        },{
+            'appVersion': 'android 0.3',
+            '5.3': 20,
+            '4.0': 10,
+            '2.2': 1
+        },{
+            'appVersion': 'android 0.5',
+            '5.3': 20,
+            '4.0': 10,
+            '2.2': 1
+        }];
+
+
         var chart = c3.generate({
             bindto: '#version-chart',
             data: {
-                columns: [
-                    ['data1', 30, 20, 50, 40, 60, 50],
-                    ['data2', 200, 130, 90, 240, 130, 220],
-                    ['data3', 300, 200, 160, 400, 250, 250],
-                    ['data4', 200, 130, 90, 240, 130, 220],
-                    ['data5', 130, 120, 150, 140, 160, 150]
-                ],
+                json: json,
+                keys:{
+                    //x: 'appVersion',
+                    value: ['5.3', '4.0','2.2']
+                },
                 types: {
-                    data1: 'bar',
-                    data2: 'bar',
-                    data3: 'bar',
-                    data4: 'bar',
-                    data5: 'bar'
+                    '5.3': 'bar',
+                    '4.0': 'bar',
+                    '2.2': 'bar'
                 },
                 groups: [
-                    ['data1','data2', 'data3', 'data4', 'data5']
+                    ['5.3','4.0', '2.2']
                 ]
             },
             color: {
                 pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
             },
             axis: {
-                rotated: true,
                 x: {
-                    type: 'categorized'
-                },
-                y: {
-                    type: 'category',
-                    categories: ['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6']
-
+                    tick: {
+                        format: function (d) { console.log(json[d]); return json[d].appVersion}
+                    }
                 }
             }
         });
     })
-    .controller("DeviceErrorRateController", function($scope, $element){
-        var deviceData = [
-            {"name": "MI 2A", "value": 6},
-            {"name": "GT-N7100", "value": 9},
-            {"name": "D6503", "value": 7},
-            {"name": "GT-I9192", "value": 10},
-            {"name": "GT-I9300", "value": 15},
-            {"name": "Lenovo S820", "value": 20},
-            {"name": "SHW-M250L", "value": 6},
-            {"name": "ASUS_T00F", "value": 2}
-        ];
-        var chart = c3.generate({
-            bindto: "#device-errorrate",
-            data: {
-                json: deviceData,
+    .controller("DeviceErrorRateController", function($scope, $element, StatDeviceService){
+        StatDeviceService().get()
+            .$promise.then(function(response){
+                var chart = c3.generate({
+                    bindto: "#device-errorrate",
+                    data: {
+                        json: response.data,
 
-                keys: {
-                    x: "name",
-                    value:["value"]
-                },
-                labels: true,
-                type: 'bar'
-            },
-            axis: {
-                x: {
-                    type: 'category'
-                }
-            },
+                        keys: {
+                            x: "name",
+                            value:["value"]
+                        },
+                        labels: true,
+                        type: 'bar'
+                    },
+                    axis: {
+                        x: {
+                            type: 'category'
+                        }
+                    },
 
-            color: {
-                pattern: [ '#9edae5']
-            },
-            legend: {
-                show: false
-            },
-            bar: {
-                width: {
-                    ratio: 0.5 // this makes bar width 50% of length between ticks
-                }
-            }
-        });
+                    color: {
+                        pattern: [ '#9edae5']
+                    },
+                    legend: {
+                        show: false
+                    },
+                    bar: {
+                        width: {
+                            ratio: 0.5 // this makes bar width 50% of length between ticks
+                        }
+                    }
+                });
+            });
+
     })
     .controller("classErrorRateController", function($scope) {
         $scope.data =  [
