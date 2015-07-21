@@ -1,9 +1,10 @@
 angular.module("app")
-    .controller("ProjectDauController", function($scope, StatDauService){
+    .constant("COLOR_CONFIG", ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5'])
+    .controller("ProjectDauController", function($scope, COLOR_CONFIG, StatDauService){
+        $scope.color = _.shuffle(COLOR_CONFIG);
         StatDauService().get()
             .$promise.then(function(response){
                 var keys = response['app-version'];
-
                 c3.generate({
                     bindto: "#dau-bar",
                     data: {
@@ -26,14 +27,14 @@ angular.module("app")
                         }
                     },
                     color: {
-                        pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+                        pattern: $scope.color
                     }
                 });
             });
 
     })
-    .controller("ProjectCrashRateController", function($scope, StatCrashRateService){
-
+    .controller("ProjectCrashRateController", function($scope, COLOR_CONFIG, StatCrashRateService){
+        $scope.color = _.shuffle(COLOR_CONFIG);
         StatCrashRateService().get()
             .$promise.then(function(response) {
                 var keys = response['app-version'];
@@ -59,7 +60,7 @@ angular.module("app")
                         }
                     },
                     color: {
-                        pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+                        pattern: $scope.color
                     }
                 });
             })
@@ -104,54 +105,40 @@ angular.module("app")
                 });
             });
     })
-    .controller("ProjectVersionController", function($scope, $element){
-
-        var json = [{
-            'appVersion': 'android 0.1',
-            '5.3': 20,
-            '4.0': 10,
-            '2.2': 200
-        },{
-            'appVersion': 'android 0.3',
-            '5.3': 20,
-            '4.0': 10,
-            '2.2': 1
-        },{
-            'appVersion': 'android 0.5',
-            '5.3': 20,
-            '4.0': 10,
-            '2.2': 1
-        }];
-
-
-        var chart = c3.generate({
-            bindto: '#version-chart',
-            data: {
-                json: json,
-                keys:{
-                    //x: 'appVersion',
-                    value: ['5.3', '4.0','2.2']
-                },
-                types: {
-                    '5.3': 'bar',
-                    '4.0': 'bar',
-                    '2.2': 'bar'
-                },
-                groups: [
-                    ['5.3','4.0', '2.2']
-                ]
-            },
-            color: {
-                pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
-            },
-            axis: {
-                x: {
-                    tick: {
-                        format: function (d) { console.log(json[d]); return json[d].appVersion}
+    .controller("ProjectVersionController", function($scope, $element, COLOR_CONFIG, StatVersionService){
+        $scope.color = _.shuffle(COLOR_CONFIG);
+        StatVersionService().get()
+            .$promise.then(function(response){
+                var data = response.data;
+                var chart = c3.generate({
+                    bindto: '#version-chart',
+                    data: {
+                        json: data,
+                        keys:{
+                            //x: 'appVersion',
+                            value: response.keys
+                        },
+                        types: {
+                            '5.3': 'bar',
+                            '4.0': 'bar',
+                            '2.2': 'bar'
+                        },
+                        groups: [
+                            response.keys
+                        ]
+                    },
+                    color: {
+                        pattern: $scope.color
+                    },
+                    axis: {
+                        x: {
+                            tick: {
+                                format: function (d) { return data[d].appVersion}
+                            }
+                        }
                     }
-                }
-            }
-        });
+                });
+            });
     })
     .controller("DeviceErrorRateController", function($scope, $element, StatDeviceService){
         StatDeviceService().get()
@@ -189,21 +176,8 @@ angular.module("app")
             });
 
     })
-    .controller("classErrorRateController", function($scope) {
-        $scope.data =  [
-            {value: 17.6, label: 'com.android.volley.toolbox.d'},
-            {value: 13.7, label: 'at droom.sleepIfUCan.activity.af (:211)'},
-            {value: 11, label: 'droom.sleepIfUCan.activity.af' },
-            {value: 8.7, label: 'android.database.sqlite.SQLiteStatement'},
-            {value: 8.5, label: 'android.content.res.Resources'},
-            {value: 5.3, label: 'android.os.BinderProxy' },
-            {value: 4.5, label: 'at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand' },
-            {value: 4.3, label: 'at android.content.res.Resources' },
-            {value: 4, label: 'android.database.sqlite.SQLiteStatement' },
-            {value: 2, label: 'android.database.sqlite.SQLiteConnection' },
-            {value: 1.6, label: 'droom.sleepIfUCan.activity.SelectPictureActivity' },
-            {value: 18.8, label: 'Others' },
-        ];
+    .controller("classErrorRateController", function($scope, StatClassService) {
+
 
         $scope.getItemClass = function(data) {
             if(data.label === 'Others') {
@@ -218,6 +192,13 @@ angular.module("app")
                 return 'progress-bar-info';
             }
         };
+
+        StatClassService().get()
+            .$promise.then(function(response) {
+                $scope.data = response.data;
+
+            });
+
 
         Morris.Donut({
             element: 'graph-donut',

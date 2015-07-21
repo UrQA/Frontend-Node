@@ -67,5 +67,13 @@ router.get('/stat/world', function(req, res) {
   var object = require('./stat/worldMap.json');
   res.json(object);
 });
+router.get('/stat/version', function(req, res) {
+  var object = require('./stat/versionErrorRate.json');
+  res.json(object);
+});
+router.get('/stat/class', function(req, res) {
+  var object = require('./stat/classErrorRate.json');
+  res.json(object);
+});
 
 module.exports = router;

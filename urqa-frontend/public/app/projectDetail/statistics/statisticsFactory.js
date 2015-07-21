@@ -29,3 +29,13 @@ angular.module("app")
             return $resource('/ajax/stat/world');
         };
     }])
+    .factory('StatVersionService', ['$resource', function($resource) {
+        return function(apikey) {
+            return $resource('/ajax/stat/version');
+        };
+    }])
+    .factory('StatClassService', ['$resource', function($resource) {
+        return function(apikey) {
+            return $resource('/ajax/stat/class');
+        };
+    }])
