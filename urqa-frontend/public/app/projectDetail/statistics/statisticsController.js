@@ -169,6 +169,7 @@ angular.module("app")
             });
     })
     .controller("DeviceErrorRateController", function($scope, $element, StatDeviceService){
+        
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
         });
@@ -209,11 +210,30 @@ angular.module("app")
             });
 
     })
-    .controller("classErrorRateController", function($scope, StatClassService) {
+    .controller("classErrorRateController", function($scope, $cacheFactory, StatClassService) {
+        $scope.cache = $cacheFactory("classErrorRateCache");
+        $scope.days = 1;
 
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
+            $scope.refresh();
         });
+
+        $scope.refresh = function(){
+            var days = $scope.days;
+            var cacheData = $scope.cache.get(days);
+            if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                StatClassService().get({days : days})
+                    .$promise.then(function(response) {
+                        $scope.data = response.data;
+                        $scope.cache.put(days, response);
+                    });
+            } else {
+                $scope.data = cacheData.data;
+            }
+
+        };
+        $scope.refresh();
 
         $scope.getItemClass = function(data) {
             if(data.label === 'Others') {
@@ -229,25 +249,34 @@ angular.module("app")
             }
         };
 
-        StatClassService().get({days:1})
-            .$promise.then(function(response) {
-                $scope.data = response.data;
-            });
-
-
 
     })
-    .controller("errorActivityController", function($scope, StatActivityService) {
+    .controller("errorActivityController", function($scope, $cacheFactory, StatActivityService) {
+        $scope.cache = $cacheFactory("errorActivityCache");
+        $scope.days = 1;
+
 
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
+            $scope.refresh();
         });
+        $scope.refresh = function(){
+            var days = $scope.days;
+            var cacheData = $scope.cache.get(days);
+            if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                StatActivityService().get({days : days})
+                    .$promise.then(function(response) {
+                        $scope.data = response.data;
+                        $scope.cache.put(days, response);
+                    });
+            } else {
+                $scope.data = cacheData.data;
+            }
 
-        StatActivityService().get({days:1})
-            .$promise.then(function(response){
-                $scope.data = response.data;
+        };
+        $scope.refresh();
 
-            })
+
 
         $scope.getItemClass = function(data) {
 
@@ -260,7 +289,8 @@ angular.module("app")
             }
         };
     })
-    .controller("OsVersionController", function($scope,  StatOsVersionService){
+    .controller("OsVersionController", function($scope, $cacheFactory,  StatOsVersionService){
+        $scope.cache = $cacheFactory("OsVersionCache");
         $scope.days = 1;
 
         $scope.$on('changeDays', function(e, args) {
@@ -268,10 +298,18 @@ angular.module("app")
             $scope.refresh();
         });
         $scope.refresh = function(){
-            StatOsVersionService().get({days:$scope.days})
-                .$promise.then(function(response) {
-                    $scope.data = response.data;
-                });
+            var days = $scope.days;
+            var cacheData = $scope.cache.get(days);
+            if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                StatOsVersionService().get({days : days})
+                    .$promise.then(function(response) {
+                        $scope.data = response.data;
+                        $scope.cache.put(days, response);
+                    });
+            } else {
+                $scope.data = cacheData.data;
+            }
+
         };
         $scope.refresh();
 
