@@ -129,89 +129,178 @@ angular.module("app")
                 });
             });
     })
-    .controller("ProjectVersionController", function($scope, $element, COLOR_CONFIG, StatVersionService){
+    .controller("ProjectVersionController", function($scope, StatCache, COLOR_CONFIG, StatVersionService){
+        var CACHE_PREFIX = "ProjectVersionCache-";
         $scope.color = _.shuffle(COLOR_CONFIG);
+        $scope.days = 1;
+        $scope.cache = StatCache;
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
-        })
+            $scope.refresh();
 
-        StatVersionService().get({days:1})
-            .$promise.then(function(response){
-                var data = response.data;
-                var chart = c3.generate({
-                    bindto: '#version-chart',
-                    data: {
-                        json: data,
-                        keys:{
-                            //x: 'appVersion',
-                            value: response.keys
-                        },
-                        types: {
-                            '5.3': 'bar',
-                            '4.0': 'bar',
-                            '2.2': 'bar'
-                        },
-                        groups: [
-                            response.keys
-                        ]
-                    },
-                    color: {
-                        pattern: $scope.color
-                    },
-                    axis: {
-                        x: {
-                            tick: {
-                                format: function (d) { return data[d].appVersion}
-                            }
-                        }
-                    }
-                });
-            });
-    })
-    .controller("DeviceErrorRateController", function($scope, $element, StatDeviceService){
-        
-        $scope.$on('changeDays', function(e, args) {
-            $scope.days = args.days;
         });
 
+        $scope.refresh = function() {
+            if(_.isUndefined($scope.chart) || _.isNull($scope.chart)) {
+                $scope.init();
+            } else {
+                var days = $scope.days;
+                var cacheData =  $scope.cache.get(CACHE_PREFIX + days);
 
-        StatDeviceService().get({days:1})
-            .$promise.then(function(response){
-                var chart = c3.generate({
-                    bindto: "#device-errorrate",
-                    data: {
-                        json: response.data,
+                if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                    StatVersionService().get({days : days})
+                        .$promise.then(function(response) {
+                            $scope.chart.load({
+                                json: response.data,
+                                keys:{
+                                    //x: 'appVersion',
+                                    value: response.keys
+                                },
+                                groups: [
+                                    response.keys
+                                ]
+                            });
 
+                            $scope.cache.put(CACHE_PREFIX + days, response);
+                        });
+                } else {
+                    $scope.chart.load({
+                        json: cacheData.data,
+                        keys:{
+                            //x: 'appVersion',
+                            value: cacheData.keys
+                        },
+                        groups: [
+                            cacheData.keys
+                        ]
+                    });
+                }
+            }
+        }
+
+        $scope.init = function() {
+            StatVersionService().get({days:1})
+                .$promise.then(function(response){
+                    var data = response.data;
+                    $scope.cache.put(CACHE_PREFIX + 1, response);
+                    $scope.chart = c3.generate({
+                        bindto: '#version-chart',
+                        data: {
+                            json: data,
+                            keys:{
+                                //x: 'appVersion',
+                                value: response.keys
+                            },
+                            types: {
+                                '5.3': 'bar',
+                                '4.0': 'bar',
+                                '2.2': 'bar'
+                            },
+                            groups: [
+                                response.keys
+                            ]
+                        },
+                        color: {
+                            pattern: $scope.color
+                        },
+                        axis: {
+                            x: {
+                                tick: {
+                                    format: function (d) { return data[d].appVersion}
+                                }
+                            }
+                        }
+                    });
+                });
+        }
+
+        $scope.init();
+    })
+    .controller("DeviceErrorRateController", function($scope, StatCache, StatDeviceService){
+        var CACHE_PREFIX = "DeviceErrorRateCache-"
+        $scope.cache = StatCache;
+        $scope.days = 1;
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+            $scope.refresh();
+        });
+
+        $scope.refresh = function() {
+            if(_.isUndefined($scope.chart) || _.isNull($scope.chart)) {
+                $scope.init();
+            } else {
+                var days = $scope.days;
+                var cacheData =  $scope.cache.get(CACHE_PREFIX + days);
+
+                if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                    StatDeviceService().get({days : days})
+                        .$promise.then(function(response) {
+                            $scope.chart.load({
+                                json: response.data,
+                                keys: {
+                                    x: "name",
+                                    value:["value"]
+                                }
+                            });
+
+                            $scope.cache.put(CACHE_PREFIX + days, response);
+                        });
+                } else {
+                    $scope.chart.load({
+                        json: cacheData.data,
                         keys: {
                             x: "name",
                             value:["value"]
-                        },
-                        labels: true,
-                        type: 'bar'
-                    },
-                    axis: {
-                        x: {
-                            type: 'category'
                         }
-                    },
+                    });
+                }
+            }
+        }
 
-                    color: {
-                        pattern: [ '#9edae5']
-                    },
-                    legend: {
-                        show: false
-                    },
-                    bar: {
-                        width: {
-                            ratio: 0.5 // this makes bar width 50% of length between ticks
+        $scope.init = function() {
+            StatDeviceService().get({days:1})
+                .$promise.then(function(response){
+                    $scope.cache.put(CACHE_PREFIX + 1, response);
+                    $scope.chart = c3.generate({
+                        bindto: "#device-errorrate",
+                        data: {
+                            json: response.data,
+
+                            keys: {
+                                x: "name",
+                                value:["value"]
+                            },
+                            labels: true,
+                            type: 'bar'
+                        },
+                        axis: {
+                            x: {
+                                type: 'category'
+                            }
+                        },
+
+                        color: {
+                            pattern: [ '#9edae5']
+                        },
+                        legend: {
+                            show: false
+                        },
+                        bar: {
+                            width: {
+                                ratio: 0.5 // this makes bar width 50% of length between ticks
+                            }
                         }
-                    }
+                    });
                 });
-            });
+        }
+        $scope.init();
+
+
 
     })
-    .controller("classErrorRateController", function($scope, $cacheFactory, StatClassService) {
-        $scope.cache = $cacheFactory("classErrorRateCache");
+    .controller("classErrorRateController", function($scope, StatCache, StatClassService) {
+        var CACHE_PREFIX = "classErrorRateCache-";
+        $scope.cache = StatCache;
         $scope.days = 1;
 
         $scope.$on('changeDays', function(e, args) {
@@ -221,12 +310,12 @@ angular.module("app")
 
         $scope.refresh = function(){
             var days = $scope.days;
-            var cacheData = $scope.cache.get(days);
+            var cacheData = $scope.cache.get(CACHE_PREFIX + days);
             if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
                 StatClassService().get({days : days})
                     .$promise.then(function(response) {
                         $scope.data = response.data;
-                        $scope.cache.put(days, response);
+                        $scope.cache.put(CACHE_PREFIX + days, response);
                     });
             } else {
                 $scope.data = cacheData.data;
@@ -251,8 +340,9 @@ angular.module("app")
 
 
     })
-    .controller("errorActivityController", function($scope, $cacheFactory, StatActivityService) {
-        $scope.cache = $cacheFactory("errorActivityCache");
+    .controller("errorActivityController", function($scope, StatCache, StatActivityService) {
+        var CACHE_PREFIX = "errorActivityCache-";
+        $scope.cache = StatCache;
         $scope.days = 1;
 
 
@@ -262,12 +352,12 @@ angular.module("app")
         });
         $scope.refresh = function(){
             var days = $scope.days;
-            var cacheData = $scope.cache.get(days);
+            var cacheData = $scope.cache.get(CACHE_PREFIX + days);
             if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
                 StatActivityService().get({days : days})
                     .$promise.then(function(response) {
                         $scope.data = response.data;
-                        $scope.cache.put(days, response);
+                        $scope.cache.put(CACHE_PREFIX + days, response);
                     });
             } else {
                 $scope.data = cacheData.data;
@@ -289,22 +379,23 @@ angular.module("app")
             }
         };
     })
-    .controller("OsVersionController", function($scope, $cacheFactory,  StatOsVersionService){
-        $scope.cache = $cacheFactory("OsVersionCache");
+    .controller("OsVersionController", function($scope, StatCache,  StatOsVersionService){
+        $scope.cache = StatCache;
         $scope.days = 1;
 
+        var CACHEPREFIX = "OsVersionCache-";
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
             $scope.refresh();
         });
         $scope.refresh = function(){
             var days = $scope.days;
-            var cacheData = $scope.cache.get(days);
+            var cacheData = $scope.cache.get(CACHEPREFIX + days);
             if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
                 StatOsVersionService().get({days : days})
                     .$promise.then(function(response) {
                         $scope.data = response.data;
-                        $scope.cache.put(days, response);
+                        $scope.cache.put(CACHEPREFIX + days, response);
                     });
             } else {
                 $scope.data = cacheData.data;

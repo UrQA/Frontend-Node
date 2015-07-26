@@ -1,4 +1,7 @@
 angular.module("app")
+    .factory('StatCache', ['$cacheFactory', function($cacheFactory) {
+        return $cacheFactory('Stat-Cache');
+    }])
     .factory('StatDauService', ['$resource', function($resource) {
         return function(apikey) {
             return $resource('/ajax/stat/dau/:days');
