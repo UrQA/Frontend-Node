@@ -1,8 +1,23 @@
 angular.module("app")
     .constant("COLOR_CONFIG", ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5'])
+    .controller("StatistucsController",function($scope){
+
+        $scope.days=1;
+        $scope.changeDays = function() {
+            $scope.$broadcast('changeDays', {
+                days: $scope.days
+            });
+        }
+    })
     .controller("ProjectDauController", function($scope, COLOR_CONFIG, StatDauService){
         $scope.color = _.shuffle(COLOR_CONFIG);
-        StatDauService().get()
+        $scope.days= 1;
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        })
+
+
+        StatDauService().get({days:$scope.days})
             .$promise.then(function(response){
                 var keys = response['app-version'];
                 c3.generate({
@@ -35,7 +50,13 @@ angular.module("app")
     })
     .controller("ProjectCrashRateController", function($scope, COLOR_CONFIG, StatCrashRateService){
         $scope.color = _.shuffle(COLOR_CONFIG);
-        StatCrashRateService().get()
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        })
+        console.log('test');
+
+
+        StatCrashRateService().get({days:1})
             .$promise.then(function(response) {
                 var keys = response['app-version'];
                 var types = {};
@@ -70,8 +91,11 @@ angular.module("app")
 
     })
     .controller("ProjectWorldController", function($scope, StatWorldeService){
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        })
 
-        StatWorldeService().get()
+        StatWorldeService().get({days:1})
             .$promise.then(function(response) {
                 c3.generate({
                     bindto: "#world_vmap_info",
@@ -107,7 +131,11 @@ angular.module("app")
     })
     .controller("ProjectVersionController", function($scope, $element, COLOR_CONFIG, StatVersionService){
         $scope.color = _.shuffle(COLOR_CONFIG);
-        StatVersionService().get()
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        })
+
+        StatVersionService().get({days:1})
             .$promise.then(function(response){
                 var data = response.data;
                 var chart = c3.generate({
@@ -141,7 +169,12 @@ angular.module("app")
             });
     })
     .controller("DeviceErrorRateController", function($scope, $element, StatDeviceService){
-        StatDeviceService().get()
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        });
+
+
+        StatDeviceService().get({days:1})
             .$promise.then(function(response){
                 var chart = c3.generate({
                     bindto: "#device-errorrate",
@@ -178,6 +211,9 @@ angular.module("app")
     })
     .controller("classErrorRateController", function($scope, StatClassService) {
 
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        });
 
         $scope.getItemClass = function(data) {
             if(data.label === 'Others') {
@@ -193,7 +229,7 @@ angular.module("app")
             }
         };
 
-        StatClassService().get()
+        StatClassService().get({days:1})
             .$promise.then(function(response) {
                 $scope.data = response.data;
             });
@@ -203,7 +239,11 @@ angular.module("app")
     })
     .controller("errorActivityController", function($scope, StatActivityService) {
 
-        StatActivityService().get()
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+        });
+
+        StatActivityService().get({days:1})
             .$promise.then(function(response){
                 $scope.data = response.data;
 
@@ -220,11 +260,21 @@ angular.module("app")
             }
         };
     })
-    .controller("OsVersionController", function($scope, StatOsVersionService){
-        StatOsVersionService().get()
-            .$promise.then(function(response) {
-                $scope.data = response.data;
-            });
+    .controller("OsVersionController", function($scope,  StatOsVersionService){
+        $scope.days = 1;
+
+        $scope.$on('changeDays', function(e, args) {
+            $scope.days = args.days;
+            $scope.refresh();
+        });
+        $scope.refresh = function(){
+            StatOsVersionService().get({days:$scope.days})
+                .$promise.then(function(response) {
+                    $scope.data = response.data;
+                });
+        };
+        $scope.refresh();
+
 
         $scope.getItemClass = function(data) {
 

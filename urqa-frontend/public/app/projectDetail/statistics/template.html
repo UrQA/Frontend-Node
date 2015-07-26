@@ -1,5 +1,5 @@
 <!--main content start-->
-<section id="main-content">
+<section id="main-content" ng-controller="StatistucsController">
     <section class="wrapper">
         <!-- page start-->
         <div class="row">
@@ -9,7 +9,7 @@
                     <li><a href="/{{project.key}}">{{project.name}}</a></li>
                     <li>Statistics</li>
                     <li class="active">
-                        <select size="1" name="editable-sample_length" class="xsmall">
+                        <select size="1" name="editable-sample_length" class="xsmall" ng-model="days" ng-change="changeDays()">
                             <option value="1" selected="selected">1 day</option>
                             <option value="7">7 days</option>
                             <option value="14">14 days</option>
@@ -192,7 +192,7 @@
                     </div>
                 </section>
             </div>
-   
+
         </div>
 
         <div class="row">
