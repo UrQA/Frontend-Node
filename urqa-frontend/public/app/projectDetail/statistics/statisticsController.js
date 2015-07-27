@@ -51,7 +51,7 @@ angular.module("app")
                 } else {
                     var keys = cacheData['app-version'];
                     $scope.chart.load({
-                        json: response.data,
+                        json: cacheData.data,
                         keys: {
                             x: "date",
                             value: keys.concat(['total'])
@@ -403,7 +403,7 @@ angular.module("app")
                             $scope.chart.load({
                                 json: response.data,
                                 keys: {
-                                    x: "name",
+                                    x: "label",
                                     value:["value"]
                                 }
                             });
@@ -414,7 +414,7 @@ angular.module("app")
                     $scope.chart.load({
                         json: cacheData.data,
                         keys: {
-                            x: "name",
+                            x: "label",
                             value:["value"]
                         }
                     });
@@ -432,7 +432,7 @@ angular.module("app")
                             json: response.data,
 
                             keys: {
-                                x: "name",
+                                x: "label",
                                 value:["value"]
                             },
                             labels: true,

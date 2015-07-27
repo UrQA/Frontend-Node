@@ -1,12 +1,12 @@
 {
   "data": [
-    {"name": "MI 2A", "value": 6},
-    {"name": "GT-N7100", "value": 9},
-    {"name": "D6503", "value": 7},
-    {"name": "GT-I9192", "value": 10},
-    {"name": "GT-I9300", "value": 15},
-    {"name": "Lenovo S820", "value": 20},
-    {"name": "SHW-M250L", "value": 6},
-    {"name": "ASUS_T00F", "value": 2}
+    {"label": "MI 2A", "value": 6},
+    {"label": "GT-N7100", "value": 9},
+    {"label": "D6503", "value": 7},
+    {"label": "GT-I9192", "value": 10},
+    {"label": "GT-I9300", "value": 15},
+    {"label": "Lenovo S820", "value": 20},
+    {"label": "SHW-M250L", "value": 6},
+    {"label": "ASUS_T00F", "value": 2}
   ]
 }
