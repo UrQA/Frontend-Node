@@ -9,20 +9,48 @@ angular.module("app")
             });
         }
     })
-    .controller("ProjectDauController", function($scope, COLOR_CONFIG, StatDauService){
+    .controller("ProjectDauController", function($scope, StatCache, COLOR_CONFIG, StatDauService){
+        var CACHE_PREFIX = "ProjectDauCache-";
         $scope.color = _.shuffle(COLOR_CONFIG);
         $scope.days= 1;
+        $scope.cache = StatCache;
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
-        })
+            $scope.refresh();
+        });
 
+        $scope.refresh = function() {
+            if(_.isUndefined($scope.chart) || _.isNull($scope.chart)) {
+                $scope.init();
+            } else {
+                var days = $scope.days;
+                var cacheData =  $scope.cache.get(CACHE_PREFIX + days);
 
-        StatDauService().get({days:$scope.days})
-            .$promise.then(function(response){
-                var keys = response['app-version'];
-                c3.generate({
-                    bindto: "#dau-bar",
-                    data: {
+                if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                    StatDauService().get({days : days})
+                        .$promise.then(function(response) {
+                            var keys = response['app-version'];
+
+                            $scope.chart.load({
+                                json: response.data,
+                                keys: {
+                                    x: "date",
+                                    value: keys.concat(['total'])
+                                },
+                                type: 'bar',
+                                types: {
+                                    total: 'area',
+                                },
+                                groups: [
+                                    keys
+                                ]
+                            });
+
+                            $scope.cache.put(CACHE_PREFIX + days, response);
+                        });
+                } else {
+                    var keys = cacheData['app-version'];
+                    $scope.chart.load({
                         json: response.data,
                         keys: {
                             x: "date",
@@ -34,106 +62,238 @@ angular.module("app")
                         },
                         groups: [
                             keys
-                        ],
-                    },
-                    axis: {
-                        x: {
-                            type: 'category'
+                        ]
+                    });
+                }
+            }
+        };
+
+        $scope.init = function() {
+            StatDauService().get({days:1})
+                .$promise.then(function(response){
+                    var keys = response['app-version'];
+                    $scope.chart = c3.generate({
+                        bindto: "#dau-bar",
+                        data: {
+                            json: response.data,
+                            keys: {
+                                x: "date",
+                                value: keys.concat(['total'])
+                            },
+                            type: 'bar',
+                            types: {
+                                total: 'area',
+                            },
+                            groups: [
+                                keys
+                            ],
+                        },
+                        axis: {
+                            x: {
+                                type: 'category'
+                            }
+                        },
+                        color: {
+                            pattern: $scope.color
                         }
-                    },
-                    color: {
-                        pattern: $scope.color
-                    }
+                    });
+
+                    $scope.cache.put(CACHE_PREFIX + 1, response);
                 });
-            });
+
+        }
+
+        $scope.init();
+
+
+
 
     })
-    .controller("ProjectCrashRateController", function($scope, COLOR_CONFIG, StatCrashRateService){
+    .controller("ProjectCrashRateController", function($scope, StatCache, COLOR_CONFIG, StatCrashRateService){
+        var CACHE_PREFIX = "ProjectCrashRateCache-";
         $scope.color = _.shuffle(COLOR_CONFIG);
+        $scope.days = 1;
+        $scope.cache = StatCache;
+
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
-        })
-        console.log('test');
+            $scope.refresh();
+        });
 
+        $scope.refresh = function() {
+            if(_.isUndefined($scope.chart) || _.isNull($scope.chart)) {
+                $scope.init();
+            } else {
+                var days = $scope.days;
+                var cacheData =  $scope.cache.get(CACHE_PREFIX + days);
 
-        StatCrashRateService().get({days:1})
-            .$promise.then(function(response) {
-                var keys = response['app-version'];
-                var types = {};
-                $.each(keys, function(index, val) {
-                    types[val] = 'area'
-                })
+                if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                    StatCrashRateService().get({days : days})
+                        .$promise.then(function(response) {
+                            var keys = response['app-version'];
 
-                var chart = c3.generate({
-                    bindto:'#crash-rate',
-                    data: {
-                        json: response.data,
+                            $scope.chart.load({
+                                json: response.data,
+                                keys: {
+                                    x:'date',
+                                    value: keys
+                                },
+                                types: _.transform(keys, function(result, n){
+                                    result[n] = 'area';
+                                }),
+                                groups: [keys]
+                            });
+
+                            $scope.cache.put(CACHE_PREFIX + days, response);
+                        });
+                } else {
+                    var keys = cacheData['app-version'];
+                    $scope.chart.load({
+                        json: cacheData.data,
                         keys: {
                             x:'date',
                             value: keys
                         },
-                        types: types,
+                        types: _.transform(keys, function(result, n){
+                            result[n] = 'area';
+                        }),
                         groups: [keys]
-                    },
-                    axis: {
-                        x: {
-                            type: 'category'
+                    });
+                }
+            }
+        };
+
+        $scope.init = function() {
+            StatCrashRateService().get({days: 1})
+                .$promise.then(function(response) {
+                    var keys = response['app-version'];
+                    $scope.chart = c3.generate({
+                        bindto:'#crash-rate',
+                        data: {
+                            json: response.data,
+                            keys: {
+                                x:'date',
+                                value: keys
+                            },
+                            types: _.transform(keys, function(result, n){
+                                result[n] = 'area';
+                            }),
+                            groups: [keys]
+                        },
+                        axis: {
+                            x: {
+                                type: 'category'
+                            }
+                        },
+                        color: {
+                            pattern: $scope.color
                         }
-                    },
-                    color: {
-                        pattern: $scope.color
-                    }
+                    });
+
+                    $scope.cache.put(CACHE_PREFIX + 1, response);
                 });
-            })
+        };
+
+        $scope.init();
+
+
+
 
 
 
 
     })
-    .controller("ProjectWorldController", function($scope, StatWorldeService){
+    .controller("ProjectWorldController", function($scope, StatCache, COLOR_CONFIG, StatWorldeService){
+        var CACHE_PREFIX = "ProjectWorldCache-";
+
+        $scope.color = _.shuffle(COLOR_CONFIG);
+        $scope.days = 1;
+        $scope.cache = StatCache;
+
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
-        })
+            $scope.refresh();
+        });
 
-        StatWorldeService().get({days:1})
-            .$promise.then(function(response) {
-                c3.generate({
-                    bindto: "#world_vmap_info",
-                    data: {
-                        json: response.data,
+        $scope.refresh = function() {
+            if(_.isUndefined($scope.chart) || _.isNull($scope.chart)) {
+                $scope.init();
+            } else {
+                var days = $scope.days;
+                var cacheData =  $scope.cache.get(CACHE_PREFIX + days);
 
+                if(_.isUndefined(cacheData) || _.isNull(cacheData)) {
+                    StatWorldeService().get({days : days})
+                        .$promise.then(function(response) {
+                            $scope.chart.load({
+                                json: response.data,
+                                keys: {
+                                    x: "location",
+                                    value:["value"]
+                                },
+                            });
+
+                            $scope.cache.put(CACHE_PREFIX + days, response);
+                        });
+                } else {
+                    $scope.chart.load({
+                        json: cacheData.data,
                         keys: {
                             x: "location",
                             value:["value"]
                         },
-                        labels: true,
-                        type: 'bar'
-                    },
-                    axis: {
-                        x: {
-                            type: 'category'
-                        }
-                    },
+                    });
+                }
+            }
+        }
 
-                    color: {
-                        pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
-                    },
-                    legend: {
-                        show: false
-                    },
-                    bar: {
-                        width: {
-                            ratio: 0.5 // this makes bar width 50% of length between ticks
+        $scope.init = function() {
+            StatWorldeService().get({days:1})
+                .$promise.then(function(response) {
+                    $scope.cache.put(CACHE_PREFIX + 1, response);
+                    $scope.chart = c3.generate({
+                        bindto: "#world_vmap_info",
+                        data: {
+                            json: response.data,
+
+                            keys: {
+                                x: "location",
+                                value:["value"]
+                            },
+                            labels: true,
+                            type: 'bar'
+                        },
+                        axis: {
+                            x: {
+                                type: 'category'
+                            }
+                        },
+
+                        color: {
+                            pattern: $scope.color
+                        },
+                        legend: {
+                            show: false
+                        },
+                        bar: {
+                            width: {
+                                ratio: 0.5 // this makes bar width 50% of length between ticks
+                            }
                         }
-                    }
+                    });
                 });
-            });
+        }
+
+        $scope.init();
+
     })
     .controller("ProjectVersionController", function($scope, StatCache, COLOR_CONFIG, StatVersionService){
         var CACHE_PREFIX = "ProjectVersionCache-";
+
         $scope.color = _.shuffle(COLOR_CONFIG);
         $scope.days = 1;
         $scope.cache = StatCache;
+
         $scope.$on('changeDays', function(e, args) {
             $scope.days = args.days;
             $scope.refresh();
@@ -156,6 +316,9 @@ angular.module("app")
                                     //x: 'appVersion',
                                     value: response.keys
                                 },
+                                types:_.transform(response.keys, function(result, n){
+                                    result[n] = 'bar';
+                                }),
                                 groups: [
                                     response.keys
                                 ]
@@ -170,13 +333,17 @@ angular.module("app")
                             //x: 'appVersion',
                             value: cacheData.keys
                         },
+                        types:_.transform(cacheData.keys, function(result, n){
+                            result[n] = 'bar';
+                        }),
                         groups: [
                             cacheData.keys
                         ]
                     });
                 }
             }
-        }
+        };
+
 
         $scope.init = function() {
             StatVersionService().get({days:1})
@@ -191,11 +358,9 @@ angular.module("app")
                                 //x: 'appVersion',
                                 value: response.keys
                             },
-                            types: {
-                                '5.3': 'bar',
-                                '4.0': 'bar',
-                                '2.2': 'bar'
-                            },
+                            types:_.transform(response.keys, function(result, n){
+                                result[n] = 'bar';
+                            }),
                             groups: [
                                 response.keys
                             ]

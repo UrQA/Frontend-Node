@@ -2,6 +2,7 @@
 <section id="main-content" ng-controller="StatistucsController">
     <section class="wrapper">
         <!-- page start-->
+
         <div class="row">
             <div class="col-md-12">
                 <ul class="breadcrumb">
@@ -22,6 +23,20 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-sm-12" ng-controller="ProjectDauController">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Daily Active Users
+                    </header>
+                    <div class="panel-body">
+                        <div id="dau-bar"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
         <div id="statistics-chart-area" class="row">
             <div class="col-md-4" ng-controller="errorActivityController">
                 <section class="panel">
@@ -30,7 +45,7 @@
 
                     </header>
                     <div class="panel-body">
-                        <div class="progress-table large-table col-sm-12">
+                        <div class="progress-table large-table col-sm-12" style="height:326px">
                             <div class="title-body">
                                 <div class="col-xs-9 text-small">Activity</div>
                                 <div class="col-xs-3 text-small">Percentage</div>
@@ -64,7 +79,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-9">
-                                <div class="progress-table large-table col-sm-12">
+                                <div class="progress-table large-table col-sm-12" style="height:326px">
                                     <div class="title-body">
                                         <div class="col-xs-9 text-small">Class</div>
                                         <div class="col-xs-3 text-small">Percentage</div>
@@ -125,18 +140,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12" ng-controller="ProjectDauController">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Daily Active Users
-                    </header>
-                    <div class="panel-body">
-                        <div id="dau-bar"></div>
-                    </div>
-                </section>
-            </div>
-        </div>
 
 
         <div class="row">
