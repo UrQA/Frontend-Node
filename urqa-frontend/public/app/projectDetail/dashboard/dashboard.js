@@ -7,26 +7,6 @@ angular.module("app")
 
     })
 
-    .controller("DashBoardController", function($scope, PROJECT_INFO){
-
-        $scope.project = PROJECT_INFO;
-    })
-
-    .controller("DashBoardInfoController", function($scope, DashBoardInfoService, PROJECT_INFO){
-        $scope.info = {};
-
-        $scope.info.weelyBug = 0;
-        $scope.info.weeklyActiveIser = 0;
-        $scope.info.avgBugRate = 0;
-        $scope.info.bugFixRate = 0;
-
-        DashBoardInfoService().get()
-            .$promise.then(function(response) {
-            $scope.info = response;
-        });
-
-    })
-
     .controller("DashBoardDailyGraphController", function ($scope, $element, DashboardErrorDailyService) {
 
 
@@ -157,5 +137,19 @@ angular.module("app")
 
         });
 
+
+    })
+    .controller("DashBoardInfoController", function($scope, DashBoardInfoService, PROJECT_INFO){
+        $scope.info = {};
+
+        $scope.info.weelyBug = 0;
+        $scope.info.weeklyActiveIser = 0;
+        $scope.info.avgBugRate = 0;
+        $scope.info.bugFixRate = 0;
+
+        DashBoardInfoService().get()
+            .$promise.then(function(response) {
+                $scope.info = response;
+            });
 
     });
