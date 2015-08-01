@@ -1,12 +1,12 @@
 {
-    "count": 45,
+    "count": 20,
     "results": [
         {
             "pid": 15,
             "count": 1,
-            "apikey": "62861D1B",
+            "apikey": "1234qwer",
             "platform": 1,
-            "name": "Fanpple",
+            "name": "Test Object",
             "stage": 3,
             "category": 18,
             "timezone": "Asia/Seoul",
@@ -88,28 +88,6 @@
             "category": 1,
             "timezone": "Asia/Seoul",
             "owner_uid": 207
-        },
-        {
-            "pid": 223,
-            "count": 6,
-            "apikey": "AE226726",
-            "platform": 1,
-            "name": "HoneMobileTest",
-            "stage": 2,
-            "category": 13,
-            "timezone": "Asia/Seoul",
-            "owner_uid": 279
-        },
-        {
-            "pid": 229,
-            "count": 10,
-            "apikey": "46A26736",
-            "platform": 1,
-            "name": "텔레톡비-v2",
-            "stage": 2,
-            "category": 13,
-            "timezone": "Asia/Seoul",
-            "owner_uid": 10
         }
     ]
 }

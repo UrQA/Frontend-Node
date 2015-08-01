@@ -102,4 +102,14 @@ router.get('/projects', function(req, res){
   res.json(object);
 });
 
+router.get('/projects/:page', function(req, res){
+  var object = require('./projects.1.json');
+  if(req.param('page') === '2') {
+    object = require('./projects.2.json');
+  } else if(req.param('page') === '3'){
+    object = require('./projects.3.json');
+  }
+  res.json(object);
+});
+
 module.exports = router;

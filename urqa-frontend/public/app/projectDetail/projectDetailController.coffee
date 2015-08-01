@@ -58,7 +58,8 @@ app.constant('DETAIL_NAV_SIDE', [
     templateUrl: '/static/app/projectDetail/setting/viewer/template.html').state 'detail.symbolicate',
     url: apiKey + '/setting/symbolicate'
     templateUrl: '/static/app/projectDetail/setting/symbolicate/template.html'
-  return
+
+
 ).controller('DetailNavSideCtrl', ($scope, DETAIL_NAV_SIDE) ->
   $scope.menu = DETAIL_NAV_SIDE
   $scope.activeMenu = 'detail.dashboard'
