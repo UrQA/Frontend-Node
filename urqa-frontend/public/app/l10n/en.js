@@ -22,5 +22,26 @@ angular.module("app")
             VIEWER: "Viewer",
             SYMBOLICATE: "Symbolicate"
         }
+    },
+    PROJECTS: {
+        PLATFORM: {
+            1: "Android",
+            2: "IOS",
+            3: "Unity",
+            4: "Cordova"
+        },
+
+        PLATFORM_ICON: {
+            1: "fa-android",
+            2: "fa-apple",
+            3: "",
+            4: ""
+        },
+
+        STAGE: {
+            1: "Develop",
+            2: "Test",
+            3: "Release"
+        }
     }
 });

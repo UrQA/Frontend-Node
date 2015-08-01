@@ -42,7 +42,6 @@ router.get('/dashboard/info', function(req, res){
   res.json(object);
 });
 
-
 router.get('/stat/dau/:days', function(req, res){
   var object = require('./stat/dailyActiveUser.json');
   if(req.param('days') === '7') {
@@ -97,6 +96,8 @@ router.get('/stat/class/:days', function(req, res) {
   if(req.param('days') === '7') {
     object =  require('./stat/7/classErrorRate.json');
   }
+router.get('/projects', function(req, res){
+  var object = require('./projects.json');
   res.json(object);
 });
 

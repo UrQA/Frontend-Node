@@ -43,8 +43,8 @@ app.config(function ($stateProvider) {
 		url: "projects",
 		templateUrl: "/static/app/projects/projects.list.html",
 		controller: "ProjectCtrl",
-		resolve: {data: function ($stateParams) {
-			return {};
+		resolve: {data: function ($stateParams, ProjectModel) {
+			return $stateParams.data || ProjectModel.query().$promise;
 		} }
 	})
 	.state("projects.add", {
@@ -54,10 +54,18 @@ app.config(function ($stateProvider) {
 	});
 })
 
-.controller("ProjectCtrl", function ($scope, data) {
-	console.log(data);
+.factory("ProjectModel", function ($resource) {
+    return $resource("/ajax/projects");
+})
+
+.controller("ProjectCtrl", function ($scope, $window, data) {
+    $scope.go = function (apikey) {
+        $window.location.href = "/" + apikey;
+    };
+    $scope.list = data;
+
 })
 
 .controller("ProjectEditCtrl", function ($scope, $modal) {
-	
+
 });

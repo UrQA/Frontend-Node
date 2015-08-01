@@ -1,88 +1,29 @@
 <div id="projects" class="row">
-    <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="project in list">
         <!--widget start-->
         <aside class="profile-nav alt">
             <section class="panel">
-                <div class="user-heading alt gray-bg" onclick="hyperlink('./dashboard')">
-                    <a> <img alt="" src="images/lock_thumb.jpg"> </a>
+                <div class="user-heading alt gray-bg" ng-click="go(project.apikey)">
+                    <!--<a> <img alt="" ng-src=""> </a>-->
                     <h1>
-                        <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="Fanpple">Fanpple</span>
-                    </h1>   
-                    <p>Release stage</p>
-                </div>
-
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">62861D1B</span></a></li>
-                    <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-apple"></i> iOS</span></a></li>
-                    <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-primary pull-right r-activity">5</span></a></li>
-                </ul>
-
-            </section>
-        </aside>
-        <!--widget end-->
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-        <!--widget start-->
-        <aside class="profile-nav alt">
-            <section class="panel">
-                <div class="user-heading alt gray-bg" onclick="hyperlink('./dashboard')">
-                    <a> <img alt="" src="images/lock_thumb.jpg"> </a>
-                    <h1>
-                        <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="ALYacPhone">ALYacPhone</span>
+                        <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="{{project.name}}" ng-bind="project.name"></span>
                     </h1>
-                    <p>Release stage</p>
+                    <p>{{'PROJECTS.STAGE.'+project.stage|translate}} stage</p>
                 </div>
 
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">64341412</span></a></li>
-                    <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-android"></i> Android</span></a></li>
-                    <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-warning pull-right r-activity">252</span></a></li>
+                    <li class="copy">
+                        <a href="javascript:;">
+                            <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity" ng-bind="project.apikey"></span>
+                        </a></li>
+                    <li>
+                        <a>
+                            <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity">
+                            <i class="fa {{('PROJECTS.PLATFORM_ICON.'+ project.platform)|translate}}"></i>
+                            <span translate="{{'PROJECTS.PLATFORM.'+ project.platform}}"></span></span>
+                        </a></li>
+                    <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-primary pull-right r-activity" ng-bind="project.count"></span></a></li>
                 </ul>
-
-            </section>
-        </aside>
-        <!--widget end-->
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-        <!--widget start-->
-        <aside class="profile-nav alt">
-            <section class="panel">
-                <div class="user-heading alt gray-bg" onclick="hyperlink('./dashboard')">
-                    <a> <img alt="" src="images/lock_thumb.jpg"> </a>
-                    <h1>
-                        <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="BionTech">BionTech</span>
-                    </h1>
-                    <p>Develop stage</p>
-                </div>
-
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">582C514F</span></a></li>
-                    <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-android"></i> Android</span></a></li>
-                    <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-success pull-right r-activity">74</span></a></li>
-                </ul>
-
-            </section>
-        </aside>
-        <!--widget end-->
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-        <!--widget start-->
-        <aside class="profile-nav alt">
-            <section class="panel">
-                <div class="user-heading alt gray-bg" onclick="hyperlink('./dashboard')">
-                    <a> <img alt="" src="images/lock_thumb.jpg"> </a>
-                    <h1>
-                        <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="텔레톡비-v2">텔레톡비-v2</span>
-                    </h1>
-                    <p>Test stage</p>
-                </div>
-
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="copy"><a href="javascript:;"> <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">46A26736</span></a></li>
-                    <li><a> <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity"><i class="fa fa-android"></i> Android</span></a></li>
-                    <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-danger pull-right r-activity">2847</span></a></li>
-                </ul>
-
             </section>
         </aside>
         <!--widget end-->
