@@ -55,7 +55,7 @@ app.config(($stateProvider, $urlRouterProvider) ->
     templateUrl: '/static/app/projects/projects.edit.html'
     controller: 'ProjectEditCtrl'
 
-  $urlRouterProvider.when('projects/','projects/1')
+  $urlRouterProvider.when('/projects','/projects/1')
 
 ).factory('ProjectModel', ($resource) ->
   $resource '/ajax/projects/:page'
