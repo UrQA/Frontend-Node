@@ -1,0 +1,41 @@
+{
+  "count": 20,
+  "results": [
+    {
+      "idx": 223,
+      "appVersion": "2.0.6",
+      "county": "KR",
+      "device": "LG-F2005",
+      "osVersion": "4.4.2",
+      "wifi": true,
+      "mobile": false
+    },
+    {
+      "idx": 225,
+      "appVersion": "2.0.6",
+      "county": "KR",
+      "device": "LG-F2005",
+      "osVersion": "4.4.2",
+      "wifi": true,
+      "mobile": false
+    },
+    {
+      "idx": 227,
+      "appVersion": "2.0.6",
+      "county": "KR",
+      "device": "LG-F2005",
+      "osVersion": "4.4.2",
+      "wifi": true,
+      "mobile": false
+    },
+    {
+      "idx": 228,
+      "appVersion": "2.0.6",
+      "county": "KR",
+      "device": "LG-F2005",
+      "osVersion": "4.4.2",
+      "wifi": true,
+      "mobile": false
+    }
+  ]
+}

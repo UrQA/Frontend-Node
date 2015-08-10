@@ -1,0 +1,10 @@
+{
+  "data": [
+    {"label": "KR", "value": 6},
+    {"label": "US", "value": 9},
+    {"label": "JP", "value": 7},
+    {"label": "GP", "value": 10},
+    {"label": "TW", "value": 6},
+    {"label": "Others", "value": 2}
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "idx": 17965408,
+  "sdkVersion": "0.96",
+  "rooted": 0,
+  "locale": "\ud55c\uad6d\uc5b4",
+  "xdpi": 537.882019042969,
+  "batterylevel": 55,
+  "sdCard": 30u11,
+  "osversion": "4.4.2",
+  "appversion": "3.1.0",
+  "mobile": true,
+  "gps": false,
+  "wifi": false,
+  "device": "LG-F460L",
+  "datetime": "2015.08.10 - 22:50:04",
+  "ydpi": 541.866027832031,
+  "kernelversion": "3.10.0-perf-g24a81b5-00001-ge0e99bd",
+  "sysmemlow": "0",
+  "appmemfree": "3",
+  "country": "KR",
+  "appmemtotal": "32",
+  "appmemmax": "512",
+  "screen": {
+    "width": 2392,
+    "height": 1440,
+    "orientation": true
+  }
+}

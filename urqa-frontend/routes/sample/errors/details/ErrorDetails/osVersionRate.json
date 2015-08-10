@@ -1,0 +1,10 @@
+{
+  "data": [
+    {"label": "4.4.2", "value": 6},
+    {"label": "4.1.2", "value": 9},
+    {"label": "4.3", "value": 7},
+    {"label": "4.2.2", "value": 10},
+    {"label": "4.0.4", "value": 20},
+    {"label": "Others", "value": 2}
+  ]
+}

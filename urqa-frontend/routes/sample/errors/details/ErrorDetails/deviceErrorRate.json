@@ -1,0 +1,10 @@
+{
+  "data": [
+    {"label": "MI 2A", "value": 6},
+    {"label": "GT-N7100", "value": 9},
+    {"label": "D6503", "value": 7},
+    {"label": "GT-I9192", "value": 10},
+    {"label": "Lenovo S820", "value": 20},
+    {"label": "Others", "value": 2}
+  ]
+}

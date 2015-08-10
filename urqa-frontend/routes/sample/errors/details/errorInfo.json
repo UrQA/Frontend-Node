@@ -1,0 +1,21 @@
+{
+
+  "info": {
+    "name"  : "java.lang.RuntimeException: An error occured while executing doInBackground()",
+    "class" : "com.teletalkvi.core.BaseAsyncTask",
+    "count" : 5603,
+    "state" : "fixed"
+    "firstSeenDate": 1439218376880,
+    "lastSeenDate": 1439218376880,
+    "tags": ["dev", "apple"]
+  },
+
+  "statistic": {
+    "wifiRate" : 91.9,
+    "gpsRate"  : 80,
+    "mobileNetworkRate" : 25.2,
+    "memoryAvg" : "128.2 MB"
+  }
+
+
+}
