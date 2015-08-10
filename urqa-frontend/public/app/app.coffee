@@ -3,6 +3,8 @@ app = angular.module('app', [
   'ngResource'
   'ui.bootstrap'
   'pascalprecht.translate'
+  'ui.select'
+
 ])
 app.config(($locationProvider) ->
   $locationProvider.html5Mode true

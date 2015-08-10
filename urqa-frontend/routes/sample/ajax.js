@@ -96,6 +96,7 @@ router.get('/stat/class/:days', function(req, res) {
   if(req.param('days') === '7') {
     object =  require('./stat/7/classErrorRate.json');
   }
+  res.json(object);
 });
 router.get('/projects', function(req, res){
   var object = require('./projects.json');
@@ -112,4 +113,8 @@ router.get('/projects/:page', function(req, res){
   res.json(object);
 });
 
+router.get('/errors/filter', function(req, res){
+  var object = require('./errors/filterInfo.json');
+  res.json(object);
+});
 module.exports = router;

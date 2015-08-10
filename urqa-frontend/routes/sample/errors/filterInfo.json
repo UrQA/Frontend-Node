@@ -1,0 +1,39 @@
+{
+  "app-version": [
+    {
+      "version": "1.24",
+      "conut": 259
+    }
+  ],
+  "app-others": [
+    "1.25"
+  ],
+  "os-version": [
+    {
+      "version":"4.4",
+      "count":214
+    },
+    {
+      "version":"5.0",
+      "count":15
+    },
+    {
+      "version":"4.1",
+      "count":15
+    },
+    {
+      "version":"4.2",
+      "count": 6
+    },
+    {
+      "version" :"Others",
+      "count" :10
+    }
+  ],
+  "osv_others": [
+    "4.0",
+    "5.1"
+  ],
+
+  "total": 260
+}
