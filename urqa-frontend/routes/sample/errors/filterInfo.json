@@ -1,39 +1,52 @@
 {
-  "app-version": [
+  "appVersion": [
     {
-      "version": "1.24",
+      "idx": 1,
+      "name": "1.24",
       "conut": 259
+    },
+    {
+      "idx": 2,
+      "name": "1.25",
+      "count": 15,
+      "isOther": true
     }
   ],
-  "app-others": [
-    "1.25"
-  ],
-  "os-version": [
+  "osVersion": [
     {
-      "version":"4.4",
+      "idx": 1,
+      "name":"4.4",
       "count":214
     },
     {
-      "version":"5.0",
+      "idx": 2,
+      "name":"5.0",
       "count":15
     },
     {
-      "version":"4.1",
+      "idx":3,
+      "name":"4.1",
       "count":15
     },
     {
-      "version":"4.2",
+      "idx":4,
+      "name":"4.2",
       "count": 6
     },
     {
-      "version" :"Others",
-      "count" :10
+      "idx":5,
+      "name" : "4.0",
+      "count": 4,
+      "isOther" : true
+    },
+    {
+      "idx":6,
+      "name" : "5.1",
+      "count": 2,
+      "isOther": true
     }
   ],
-  "osv_others": [
-    "4.0",
-    "5.1"
-  ],
+
   "tags": ["dev", "test", "real"],
 
 

@@ -117,4 +117,10 @@ router.get('/errors/filter', function(req, res){
   var object = require('./errors/filterInfo.json');
   res.json(object);
 });
+
+router.get('/errors/filter/class', function(req, res){
+  var object = require('./errors/filterClassInfo.json');
+  res.json(object);
+});
+
 module.exports = router;

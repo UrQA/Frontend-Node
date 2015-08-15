@@ -1,6 +1,14 @@
 angular.module('app')
-.controller 'FilterController', ($scope, ErrorsFilterService)->
+.controller 'FilterController', ($scope,
+                                 ErrorsFilterService,
+                                 ErrorClassFilterService)->
 
+  $scope.filterData = {}
+
+  $scope.filterData.tag =[]
+  $scope.filterData.appVersion = []
+  $scope.filterData.osVersion = []
+  $scope.filterData.class= []
 
   $scope.clickPanel = ($event) ->
 
@@ -14,6 +22,22 @@ angular.module('app')
       el.slideDown 200
 
     return
+
+  $scope.appVersions = []
+  $scope.osVersions = []
+  $scope.tags = []
+  $scope.class = []
+
+  ErrorsFilterService('test').get().$promise.then (data) ->
+    $scope.appVersions = data['appVersion']
+    $scope.osVersions = data['osVersion']
+    $scope.tags = data['tags']
+
+  ErrorClassFilterService('apikey').get().$promise.then (data) ->
+    $scope.classList = data.class;
+
+
+
 
 
 
