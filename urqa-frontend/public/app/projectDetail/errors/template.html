@@ -28,52 +28,52 @@
                             <div class="col-md-12">
                                 <form class="form-horizontal bucket-form" method="get">
                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">Date</label>
+                                        <div class="col-sm-9">
+                                            <input id="date-slider" type="text" value="1;365" data-type="double" data-step="1" data-postfix=" day" data-from="1" data-to="1" data-hasgrid="true" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="col-sm-3 control-label">Rank</label>
 
                                         <div class="col-sm-9 icheck">
                                             <div class="flat-red">
                                                 <div class="radio" style="padding-left:0">
-                                                    <input id="check-rank-all" type="checkbox" checked>
-                                                    <label>All</label>
+                                                    <input id="check-rank-all" type="checkbox" ng-click="clickAllRank()" ng-model="rankAll">
+                                                    <label for="check-rank-all">All</label>
                                                 </div>
                                             </div>
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-rank-unhandled" type="checkbox" checked>
-                                                    <label>Unhandled</label>
+                                                    <input id="check-rank-unhandled" type="checkbox" ng-model="filterData.rank.unhandled">
+                                                    <label for="check-rank-unhandled">Unhandled</label>
                                                 </div>
                                             </div>
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-rank-native" type="checkbox" checked>
-                                                    <label>Native</label>
+                                                    <input id="check-rank-native" type="checkbox" ng-model="filterData.rank.native">
+                                                    <label for="check-rank-native">Native</label>
                                                 </div>
                                             </div>
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-rank-critical" type="checkbox" checked>
-                                                    <label>Critical</label>
+                                                    <input id="check-rank-critical" type="checkbox" ng-model="filterData.rank.critical">
+                                                    <label for="check-rank-critical">Critical</label>
                                                 </div>
                                             </div>
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-rank-major" type="checkbox" checked>
-                                                    <label>Major</label>
+                                                    <input id="check-rank-major" type="checkbox" ng-model="filterData.rank.major">
+                                                    <label for="check-rank-major">Major</label>
                                                 </div>
                                             </div>
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-rank-minor" type="checkbox" checked>
-                                                    <label>Minor</label>
+                                                    <input id="check-rank-minor" type="checkbox" ng-model="filterData.rank.minor">
+                                                    <label for="check-rank-minor">Minor</label>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Date</label>
-                                        <div class="col-sm-9">
-                                            <input id="date-slider" type="text" value="1;365" data-type="double" data-step="1" data-postfix=" day" data-from="1" data-to="1" data-hasgrid="true" />
                                         </div>
                                     </div>
 
@@ -82,36 +82,36 @@
                                         <div class="col-sm-9 icheck">
                                             <div class="flat-red">
                                                 <div class="radio" style="padding-left:0">
-                                                    <input id="check-status-all" type="checkbox" checked>
-                                                    <label>All</label>
+                                                    <input id="check-status-all" type="checkbox" ng-model="statusAll" ng-click="clickAllStatus()">
+                                                    <label for="check-status-all">All</label>
                                                 </div>
                                             </div>
 
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-status-new" type="checkbox" checked>
-                                                    <label>New</label>
+                                                    <input id="check-status-new" type="checkbox" ng-model="filterData.status.newError">
+                                                    <label for="check-status-new">New</label>
                                                 </div>
                                             </div>
 
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-status-open" type="checkbox" checked>
-                                                    <label>Open</label>
+                                                    <input id="check-status-open" type="checkbox" ng-model="filterData.status.openError">
+                                                    <label for="check-status-open">Open</label>
                                                 </div>
                                             </div>
 
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-status-fixed" type="checkbox" checked>
-                                                    <label>Fixed</label>
+                                                    <input id="check-status-fixed" type="checkbox" ng-model="filterData.status.fixedError">
+                                                    <label for="check-status-fixed">Fixed</label>
                                                 </div>
                                             </div>
 
                                             <div class="flat-green">
                                                 <div class="radio">
-                                                    <input id="check-status-ignore" type="checkbox" checked>
-                                                    <label>Ignore</label>
+                                                    <input id="check-status-ignore" type="checkbox" ng-model="filterData.status.ignoreError">
+                                                    <label for="check-status-ignore">Ignore</label>
                                                 </div>
                                             </div>
                                         </div>

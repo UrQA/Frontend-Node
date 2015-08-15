@@ -9,6 +9,22 @@ angular.module('app')
   $scope.filterData.appVersion = []
   $scope.filterData.osVersion = []
   $scope.filterData.class= []
+  $scope.filterData.rank = {
+    unhandled: true,
+    native: true,
+    critical: true,
+    major: true,
+    minor: true,
+  }
+  $scope.filterData.status = {
+    newError: true,
+    openError: true,
+    fixedError: true,
+    ignoreError: true,
+  }
+
+  $scope.rankAll = true
+  $scope.statusAll = true
 
   $scope.clickPanel = ($event) ->
 
@@ -37,7 +53,11 @@ angular.module('app')
     $scope.classList = data.class;
 
 
+  $scope.clickAllRank = ->
+    $scope.filterData.rank = _.mapValues($scope.filterData.rank, -> $scope.rankAll);
 
+  $scope.clickAllStatus = ->
+    $scope.filterData.status = _.mapValues($scope.filterData.status, -> $scope.statusAll);
 
 
 
