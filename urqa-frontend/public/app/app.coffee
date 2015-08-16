@@ -4,6 +4,7 @@ app = angular.module('app', [
   'ui.bootstrap'
   'pascalprecht.translate'
   'ui.select'
+  'ui.date'
   'ngSanitize'
 
 ])

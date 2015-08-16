@@ -54,6 +54,7 @@
     "lodash": "~3.10.0",
     "ui-select": "*",
     "angular-ui-select": "~0.12.1",
-    "angular-sanitize": "~1.4.4"
+    "angular-sanitize": "~1.4.4",
+    "angular-ui-date": "~0.0.8"
   }
 }

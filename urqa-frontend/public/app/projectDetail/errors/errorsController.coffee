@@ -3,12 +3,27 @@ angular.module('app')
                                  ErrorsFilterService,
                                  ErrorClassFilterService)->
 
-  $scope.filterData = {}
+  today = new Date();
 
+  dateOption = {
+    maxDate: new Date()
+
+  }
+
+
+  $scope.dateOption = {
+    maxDate: new Date()
+    minDate: new Date(+today - (1000*3600*24*30))
+    dateFormat: "yy-mm-dd"
+  }
+
+  $scope.filterData = {}
   $scope.filterData.tag =[]
   $scope.filterData.appVersion = []
   $scope.filterData.osVersion = []
   $scope.filterData.class= []
+  $scope.filterData.startAt = ""
+  $scope.filterData.endAt = ""
   $scope.filterData.rank = {
     unhandled: true,
     native: true,
@@ -16,6 +31,7 @@ angular.module('app')
     major: true,
     minor: true,
   }
+
   $scope.filterData.status = {
     newError: true,
     openError: true,
@@ -25,19 +41,6 @@ angular.module('app')
 
   $scope.rankAll = true
   $scope.statusAll = true
-
-  $scope.clickPanel = ($event) ->
-
-    $current = $($event.target);
-    el = $current.parents('.panel').children('.panel-body')
-    if $current.hasClass('fa-chevron-down')
-      $current.removeClass('fa-chevron-down').addClass 'fa-chevron-up'
-      el.slideUp 200
-    else
-      $current.removeClass('fa-chevron-up').addClass 'fa-chevron-down'
-      el.slideDown 200
-
-    return
 
   $scope.appVersions = []
   $scope.osVersions = []
@@ -58,6 +61,22 @@ angular.module('app')
 
   $scope.clickAllStatus = ->
     $scope.filterData.status = _.mapValues($scope.filterData.status, -> $scope.statusAll);
+
+  $scope.clickPanel = ($event) ->
+
+    $current = $($event.target);
+    el = $current.parents('.panel').children('.panel-body')
+    if $current.hasClass('fa-chevron-down')
+      $current.removeClass('fa-chevron-down').addClass 'fa-chevron-up'
+      el.slideUp 200
+    else
+      $current.removeClass('fa-chevron-up').addClass 'fa-chevron-down'
+      el.slideDown 200
+
+    return
+
+
+
 
 
 
