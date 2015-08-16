@@ -45,17 +45,26 @@ app.constant('DETAIL_NAV_SIDE', [
   $stateProvider.state('detail',
     url: '/'
     template: '<ui-view />'
-    abstract: true).state('detail.dashboard',
+    abstract: true)
+  .state('detail.dashboard',
     url: apiKey
-    templateUrl: '/static/app/projectDetail/dashboard/template.html').state('detail.errors',
+    templateUrl: '/static/app/projectDetail/dashboard/template.html')
+  .state('detail.errors',
     url: apiKey + '/errors'
-    templateUrl: '/static/app/projectDetail/errors/template.html').state('detail.statistics',
+    templateUrl: '/static/app/projectDetail/errors/template.html')
+  .state('detail.errorsview',
+    url: apiKey + '/errors/view'
+    templateUrl: '/static/app/projectDetail/errors/detail/template.html')
+  .state('detail.statistics',
     url: apiKey + '/statistics'
-    templateUrl: '/static/app/projectDetail/statistics/template.html').state('detail.general',
+    templateUrl: '/static/app/projectDetail/statistics/template.html')
+  .state('detail.general',
     url: apiKey + '/setting'
-    templateUrl: '/static/app/projectDetail/setting/general/template.html').state('detail.viewer',
+    templateUrl: '/static/app/projectDetail/setting/general/template.html')
+  .state('detail.viewer',
     url: apiKey + '/setting/viewer'
-    templateUrl: '/static/app/projectDetail/setting/viewer/template.html').state 'detail.symbolicate',
+    templateUrl: '/static/app/projectDetail/setting/viewer/template.html')
+  .state 'detail.symbolicate',
     url: apiKey + '/setting/symbolicate'
     templateUrl: '/static/app/projectDetail/setting/symbolicate/template.html'
 
@@ -66,6 +75,8 @@ app.constant('DETAIL_NAV_SIDE', [
 
   $scope.$on '$stateChangeSuccess', (event, toState) ->
     $scope.activeMenu = toState.name
+    $scope.activeMenu = 'detail.errors' if $scope.activeMenu is 'detail.errorsview'
+
 
   $scope.clickMenu = (target) ->
     $scope.activeMenu = target
