@@ -38,8 +38,12 @@
 ## Project Setting
     * Bower Install & Library Dependency install  
         * npm install bower -g
-        * bower install  
-     * Server Run
+        * npm install gulp -g 
+        * bower install
+        * npm install
+    * coffee script build
+        * gulp
+    * Server Run
         * node ./bin/www
 
 
