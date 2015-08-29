@@ -30,5 +30,4 @@ urqa-frontend/public/bower_components/
 .idea/
 Frontend-Node.iml
 
-urqa-frontend/public/app/**/*.js
 urqa-frontend/public/app/**/*.map
